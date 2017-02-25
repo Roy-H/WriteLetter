@@ -1,0 +1,35 @@
+﻿<Page
+    x:Class="WriteLetter.Views.EditingView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WriteLetter.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Style="{StaticResource PageNormalStyle}">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <TextBlock Margin="10 10 10 0">题 :</TextBlock>
+            <TextBox x:Name="Title" TextWrapping="Wrap" Margin="10 10"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <TextBlock Margin="10 0">文 :</TextBlock>
+            <RichEditBox x:Name="Content" Height="auto" MinHeight="400" Grid.Row="1" TextWrapping="Wrap" Margin="10 10"></RichEditBox>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Right" Grid.Row="2">
+            <Button Style="{StaticResource TextButton}" x:Name="Finished" Click="Finished_Click" Background="Transparent">
+                <Grid Width="50" Height="50" CacheMode="BitmapCache">
+                    <Ellipse Fill="DarkGray" StrokeDashOffset="0.1" Width="50" Height="50"></Ellipse>
+                    <Ellipse Width="47" Height="47" Fill="#C6001F"></Ellipse>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextMinStyle}">结</TextBlock>
+                </Grid>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>
