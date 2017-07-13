@@ -1,6 +1,7 @@
 ﻿{
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
+    "Microsoft.Services.Store.SDK": "10.1705.16001",
     "Newtonsoft.Json": "9.0.1"
   },
   "frameworks": {
