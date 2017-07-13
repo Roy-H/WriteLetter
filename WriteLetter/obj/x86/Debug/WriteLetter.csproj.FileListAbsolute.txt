@@ -477,3 +477,5 @@ D:\code\UWP\WriteLetter\WriteLetter\WriteLetter\obj\x86\Debug\Views\LetterDetail
 D:\code\UWP\WriteLetter\WriteLetter\WriteLetter\obj\x86\Debug\Views\LetterView.xbf
 D:\code\UWP\WriteLetter\WriteLetter\WriteLetter\obj\x86\Debug\Views\MonthView.xbf
 D:\code\UWP\WriteLetter\WriteLetter\WriteLetter\obj\x86\Debug\Views\YearView.xbf
+D:\code\UWP\WriteLetter\WriteLetter\WriteLetter\obj\x86\Debug\XamlTypeInfo.g.cs
+D:\code\UWP\WriteLetter\WriteLetter\WriteLetter\obj\x86\Debug\XamlSaveStateFile.xml
