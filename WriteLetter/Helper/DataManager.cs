@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 using WriteLetter.ViewModels;
-using Windows.Data.Pdf;
 
 namespace WriteLetter.Helper
 {
@@ -147,11 +144,6 @@ namespace WriteLetter.Helper
                 }
             }
             await SaveData(null);
-        }
-
-        //static public async Task ExportPDFFile(LetterViewModel letter)
-        //{
-                        
-        //}
+        }      
     }
 }
