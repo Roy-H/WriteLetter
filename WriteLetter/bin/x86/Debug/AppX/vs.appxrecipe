@@ -31,13 +31,13 @@
     <AppXManifest Include="D:\code\UWP\WriteLetter\WriteLetter\WriteLetter\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-07-13T13:34:31.794</Modified>
+      <Modified>2017-07-13T14:36:28.452</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\code\UWP\WriteLetter\WriteLetter\WriteLetter\bin\x86\Debug\WriteLetter.exe">
       <PackagePath>entrypoint\WriteLetter.exe</PackagePath>
-      <Modified>2017-07-13T13:34:22.367</Modified>
+      <Modified>2017-07-13T14:36:27.667</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Huang\.nuget\packages\Microsoft.CSharp\4.0.0\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -595,11 +595,11 @@
     <AppxPackagedFile Include="D:\code\UWP\WriteLetter\WriteLetter\WriteLetter\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-07-13T13:34:31.379</Modified>
+      <Modified>2017-07-13T14:36:28.192</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\code\UWP\WriteLetter\WriteLetter\WriteLetter\bin\x86\Debug\Core\WriteLetter.exe">
       <PackagePath>WriteLetter.exe</PackagePath>
-      <Modified>2017-07-13T13:34:31.794</Modified>
+      <Modified>2017-07-13T14:36:28.449</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

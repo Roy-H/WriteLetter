@@ -57,7 +57,7 @@
                 Grid.Column="1"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Bottom"
-                ApplicationId="d25517cb-12d4-4699-8bdc-52040c712cab" AdUnitId="10043058"
+                ApplicationId="31043221-946A-4361-B580-653A8DF73C41" AdUnitId="11689350"
                 Width="300" Height="100"
                 AdRefreshed="OnAdRefreshed"
                 ErrorOccurred="OnErrorOccurred"/>
