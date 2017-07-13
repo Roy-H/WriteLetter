@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
+  <Identity Name="23345RoyHuang.231042D5F89FD" Publisher="CN=31043221-946A-4361-B580-653A8DF73C41" Version="1.1.0.0" />
+  <mp:PhoneIdentity PhoneProductId="17daa60a-1cb4-47a3-9e73-bf86e7c62a38" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Properties>
+    <DisplayName>见字如晤</DisplayName>
+    <PublisherDisplayName>Roy Huang</PublisherDisplayName>
+    <Logo>Assets\50x50.png</Logo>
+  </Properties>
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
+  </Dependencies>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="WriteLetter.App">
+      <uap:VisualElements DisplayName="Write Letter" Square150x150Logo="Assets\150x150.png" Square44x44Logo="Assets\44x44.png" Description="Write Letter." BackgroundColor="#97CCBE">
+        <uap:LockScreen Notification="badgeAndTileText" BadgeLogo="Assets\24x24.png" />
+        <uap:DefaultTile Wide310x150Logo="Assets\310x150.png" Square71x71Logo="Assets\Square71x71Logo.png">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo" />
+            <uap:ShowOn Tile="wide310x150Logo" />
+          </uap:ShowNameOnTiles>
+        </uap:DefaultTile>
+        <uap:SplashScreen Image="Assets\620x300.png" BackgroundColor="#97CCBE" />
+        <uap:InitialRotationPreference>
+          <uap:Rotation Preference="portrait" />
+          <uap:Rotation Preference="landscape" />
+          <uap:Rotation Preference="portraitFlipped" />
+          <uap:Rotation Preference="landscapeFlipped" />
+        </uap:InitialRotationPreference>
+      </uap:VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+    <DeviceCapability Name="location" />
+  </Capabilities>
+</Package>
