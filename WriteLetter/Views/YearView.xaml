@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:ads="using:Microsoft.Advertising.WinRT.UI"
     Style="{StaticResource PageNormalStyle}">
     <Page.Resources>
         
@@ -46,8 +47,20 @@
                 </DataTemplate>
             </FlipView.ItemTemplate>
         </FlipView>
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <Image Source="ms-appx:///Assets/img/left_small.png" Stretch="Fill"></Image>
-        </StackPanel>
+        <Grid Grid.Row="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="0" Source="ms-appx:///Assets/img/left_small.png" Stretch="None"></Image>
+            <ads:AdControl                
+                Grid.Column="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                ApplicationId="d25517cb-12d4-4699-8bdc-52040c712cab" AdUnitId="10043058"
+                Width="300" Height="100"
+                AdRefreshed="OnAdRefreshed"
+                ErrorOccurred="OnErrorOccurred"/>
+        </Grid>
     </Grid>
 </Page>

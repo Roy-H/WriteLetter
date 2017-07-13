@@ -22,7 +22,8 @@ namespace WriteLetter.Views
     
     public sealed partial class YearView : Page
     {
-        
+        private int adCount;
+
         public DataViewModel Data
         {
             get
@@ -78,5 +79,33 @@ namespace WriteLetter.Views
                 Data.AddYear(new YearViewModel(DateTime.Now));
             this.DataContext = Data;
         }
+        private void OnErrorOccurred(object sender, Microsoft.Advertising.WinRT.UI.AdErrorEventArgs e)
+        {
+            NotifyUser($"An error occurred. {e.ErrorCode}: {e.ErrorMessage}", NotifyType.ErrorMessage);
+        }
+
+        private void OnAdRefreshed(object sender, RoutedEventArgs e)
+        {
+            adCount++;
+            NotifyUser($"Advertisement #{adCount}", NotifyType.StatusMessage);
+        }
+        public void NotifyUser(string strMessage, NotifyType type)
+        {
+            // If called from the UI thread, then update immediately.
+            // Otherwise, schedule a task on the UI thread to perform the update.
+            //if (Dispatcher.HasThreadAccess)
+            //{
+            //    UpdateStatus(strMessage, type);
+            //}
+            //else
+            //{
+            //    var task = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => UpdateStatus(strMessage, type));
+            //}
+        }
+    }
+    public enum NotifyType
+    {
+        StatusMessage,
+        ErrorMessage
     }
 }
