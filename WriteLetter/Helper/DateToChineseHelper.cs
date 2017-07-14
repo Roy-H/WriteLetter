@@ -7,15 +7,9 @@ using System.Threading.Tasks;
 namespace WriteLetter.Helper
 {
     
-    public static class DateToChineseHelper
+    public class DateToChineseHelper
     {
-        static IDictionary<int, string> ToChineseDigit;
-        static IDictionary<int, string> ToChineseWeight;
-        static public string GetChineseDigit(int digit)
-        {
-            if (ToChineseDigit == null)
-            {
-                ToChineseDigit = new Dictionary<int, string>()
+        static IDictionary<int, string> ToChineseDigit = new Dictionary<int, string>()
                 {
                     { 0,"零"},
                     { 1,"一"},
@@ -25,12 +19,26 @@ namespace WriteLetter.Helper
                     { 5,"五"},
                     { 6,"六"},
                     { 7,"七"},
-                    { 8,"把"},
+                    { 8,"八"},
                     { 9,"九"},
                 };
-            }
-         
-            string digitText = string.Empty;            
+        static IDictionary<int, string> ToChineseWeight = new Dictionary<int, string>()
+                {
+                    { 1,""},
+                    { 2,"十"},
+                    { 3,"百"},
+                    { 4,"千"},
+                    { 5,"万"},
+                    { 6,"十万"},
+                    { 7,"百万"},
+                    { 8,"千万"},
+                    { 9,"亿"},
+                    { 10,"十亿"},
+                };
+        static public string GetChineseDigit(int digit)
+        {
+
+            string digitText = string.Empty;
             while (digit != 0)
             {
                 int num = digit % 10;
@@ -44,38 +52,8 @@ namespace WriteLetter.Helper
             return digitText;
         }
 
-
-        
         static public string GetChineseNumber(int num)
         {
-            if(ToChineseDigit == null)
-              ToChineseDigit = new Dictionary<int, string>()
-            {
-                { 0,"零"},
-                { 1,"一"},
-                { 2,"二"},
-                { 3,"三"},
-                { 4,"四"},
-                { 5,"五"},
-                { 6,"六"},
-                { 7,"七"},
-                { 8,"把"},
-                { 9,"九"},
-            };
-            if(ToChineseWeight == null)
-                ToChineseWeight = new Dictionary<int, string>()
-                {
-                    { 1,""},
-                    { 2,"十"},
-                    { 3,"百"},
-                    { 3,"千"},
-                    { 4,"万"},
-                    { 5,"十万"},
-                    { 6,"百万"},
-                    { 7,"千万"},
-                    { 8,"亿"},
-                    { 9,"十亿"},
-                };
             int weightNum = 0;
             int t = num;
             string NumText = string.Empty;
@@ -84,18 +62,41 @@ namespace WriteLetter.Helper
                 t /= 10;
                 weightNum++;
             }
-            for (int i = 0; i < weightNum; i++)
+            int tempNum = num;
+            for (int i = 1; i <= weightNum && tempNum != 0; i++)
             {
-                int digit = num % 10;
+                int digit = tempNum % 10;
                 string str = string.Empty;
+                if (digit == 0 && i == 1)
+                {
+                    tempNum /= 10;
+                    continue;
+                }
+
+
                 if (ToChineseDigit.TryGetValue(digit, out str))
                 {
+                    if (digit == 0)
+                    {
+                        NumText = string.Format("{0}{1}", str, NumText);
+                        tempNum /= 10;
+                        continue;
+                    }
                     string str2 = string.Empty;
                     if (ToChineseWeight.TryGetValue(i, out str2))
-                        NumText = str + str2 + NumText;
+                        NumText = string.Format("{0}{1}{2}", str, str2, NumText);
                 }
+                tempNum /= 10;
             }
             return NumText;
+        }
+
+        static public string GetTimeText(DateTime time)
+        {            
+            var year = GetChineseDigit(time.Year);
+            var month = GetChineseNumber(time.Month);
+            var day = GetChineseNumber(time.Day);
+            return string.Format("{0}年{1}月{2}日", year,month,day);            
         }
     }
 }

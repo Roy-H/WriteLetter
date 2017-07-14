@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -39,9 +40,9 @@ namespace WriteLetter.ViewModels
         public DateTime Time { get; set; }
 
         [DataMember]
-        private ICollection<MonthViewModel> monthViewModels= new List<MonthViewModel>();
+        private ObservableCollection<MonthViewModel> monthViewModels= new ObservableCollection<MonthViewModel>();
         
-        public ICollection<MonthViewModel> MonthViewModels
+        public ObservableCollection<MonthViewModel> MonthViewModels
         {
             get
             {
@@ -51,7 +52,7 @@ namespace WriteLetter.ViewModels
 
         public void AddMonth(MonthViewModel month)
         {
-            monthViewModels.Add(month);
+            monthViewModels.Insert(0,month);
             OnPropertyChanged("MonthViewModels");
         }
 

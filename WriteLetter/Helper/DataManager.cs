@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 using WriteLetter.ViewModels;
@@ -21,7 +19,7 @@ namespace WriteLetter.Helper
             bool findedYear = false;
             bool findedMonth = false;
             YearViewModel yearFind = null;
-            foreach (var year in Data.YearViewModels)
+            foreach (var year in Data.YearViewModels.ToList())
             {
                 if (findedYear && findedMonth)
                     break;
@@ -29,7 +27,7 @@ namespace WriteLetter.Helper
                 {
                     findedYear = true;
                     yearFind = year;
-                    foreach (var month in year.MonthViewModels)
+                    foreach (var month in year.MonthViewModels.ToList())
                     {
                         if (findedYear && findedMonth)
                             break;
@@ -49,6 +47,7 @@ namespace WriteLetter.Helper
                 newYear.AddMonth(newMonth);
                 newMonth.Letters.Add(letter);
                 await SaveData(Data);
+                return;
             }
             else if (!findedMonth)
             {
@@ -56,10 +55,12 @@ namespace WriteLetter.Helper
                 yearFind.AddMonth(newMonth);
                 newMonth.Letters.Add(letter);
                 await SaveData(Data);
+                return;
             }
             else if (findedMonth&& findedYear)
             {
                 await SaveData(Data);
+                return;
             }
         }
 
@@ -143,6 +144,6 @@ namespace WriteLetter.Helper
                 }
             }
             await SaveData(null);
-        }
+        }      
     }
 }

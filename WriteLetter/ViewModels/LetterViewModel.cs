@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using WriteLetter.Helper;
 using WriteLetter.Views;
 
 namespace WriteLetter.ViewModels
@@ -16,8 +17,7 @@ namespace WriteLetter.ViewModels
     {
        
         EidtType editType = EidtType.Change;
-
-        [DataMember]
+        
         public EidtType LetterEidtType
         {
             get { return editType; }
@@ -61,7 +61,20 @@ namespace WriteLetter.ViewModels
         public DateTime Time { get; set; }
         [DataMember]
         public string Location { get; set; }
-        
+
+        [DataMember]
+        private string timeText = string.Empty;
+
+        public string TimeText
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(timeText))
+                    timeText = DateToChineseHelper.GetTimeText(Time);
+                return timeText;
+            }
+        }
+
         public ICommand OpenLetterCommand
         {
             get

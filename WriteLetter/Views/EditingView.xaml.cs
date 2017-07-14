@@ -35,7 +35,7 @@ namespace WriteLetter.Views
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             //SystemNavigationManager.GetForCurrentView().BackRequested += EditingView_BackRequested;
             if (e.Parameter != null)
             {
@@ -75,6 +75,13 @@ namespace WriteLetter.Views
 
         private async void Finished_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(Title.Text))
+            {
+                var msgDialog = new Windows.UI.Popups.MessageDialog("标题不能为空！") { Title = "标题为空" };
+                msgDialog.Commands.Add(new Windows.UI.Popups.UICommand("确定", uiCommand => { }));
+                await msgDialog.ShowAsync();
+                return;
+            }
             switch (viewModel.LetterEidtType)
             {
                 case EidtType.Change:

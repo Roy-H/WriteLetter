@@ -41,7 +41,7 @@ namespace WriteLetter.ViewModels
             get
             {
                 if (string.IsNullOrEmpty(monthText))
-                    monthText = DateToChineseHelper.GetChineseDigit(Month) + "月";
+                    monthText = DateToChineseHelper.GetChineseNumber(Month) + "月";
                 return monthText;
             }
         }

@@ -252,6 +252,13 @@
         <Setter Property="FontSize" Value="24"></Setter>
     </Style>
 
+    <Style x:Key="TextTinyStyle" 
+           TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="ms-appx:///Assets/fonts/FZLongZhaoJW.ttf#方正龙爪简体">
+        </Setter>
+        <Setter Property="FontSize" Value="16"></Setter>
+    </Style>
+
     <Style x:Key="PageVerticalTextMidStyle" 
            TargetType="Page">
         <Setter Property="FontFamily" Value="ms-appx:///Assets/fonts/FZLongZhaoJW.ttf#方正龙爪简体">

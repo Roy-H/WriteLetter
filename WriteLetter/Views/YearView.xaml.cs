@@ -19,12 +19,7 @@ using WriteLetter.ViewModels;
 
 namespace WriteLetter.Views
 {
-    public enum NotifyType
-    {
-        StatusMessage,
-        ErrorMessage
-    }
-
+    
     public sealed partial class YearView : Page
     {
         private int adCount;
@@ -45,7 +40,7 @@ namespace WriteLetter.Views
         {
             this.InitializeComponent();
             Initialize();
-            
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
             //NavigationCacheMode = NavigationCacheMode.Enabled;
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -53,6 +48,8 @@ namespace WriteLetter.Views
             base.OnNavigatedTo(e);
             //if(e.Parameter != null)
         }
+
+        
 
         private void Initialize()
         {            
@@ -82,7 +79,6 @@ namespace WriteLetter.Views
                 Data.AddYear(new YearViewModel(DateTime.Now));
             this.DataContext = Data;
         }
-
         private void OnErrorOccurred(object sender, Microsoft.Advertising.WinRT.UI.AdErrorEventArgs e)
         {
             NotifyUser($"An error occurred. {e.ErrorCode}: {e.ErrorMessage}", NotifyType.ErrorMessage);
@@ -106,5 +102,10 @@ namespace WriteLetter.Views
             //    var task = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => UpdateStatus(strMessage, type));
             //}
         }
+    }
+    public enum NotifyType
+    {
+        StatusMessage,
+        ErrorMessage
     }
 }

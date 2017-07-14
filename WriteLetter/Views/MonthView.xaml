@@ -42,12 +42,23 @@
         </StackPanel>
         <!--ItemContainerStyle="{StaticResource HorizontalItemContainerStyle}"
             ItemsPanel="{StaticResource HorizontalItemsPanelTemplate}"-->
-        <FlipView
-            Grid.Row="1" 
+        <ListView
             Background="Transparent"
+            SelectionMode="None" 
+            IsItemClickEnabled="True"
             HorizontalAlignment="Center"
+            Margin="20" 
+            BorderThickness="0" 
+            BorderBrush="Transparent"
+            ScrollViewer.HorizontalScrollMode="Enabled" 
+            ScrollViewer.HorizontalScrollBarVisibility="Auto"
+            ScrollViewer.VerticalScrollBarVisibility="Hidden"
+            ScrollViewer.VerticalScrollMode="Disabled"
+            ItemContainerStyle="{StaticResource HorizontalItemContainerStyle}"
+            ItemsPanel="{StaticResource HorizontalItemsPanelTemplate}"
+            Grid.Row="1"             
             ItemsSource="{Binding Path=MonthViewModels}">
-            <FlipView.ItemTemplate>
+            <ListView.ItemTemplate>
                 <DataTemplate>
                     <Button Style="{StaticResource TextButton}" Command="{Binding Path=EnterMonthCommand}">
                         <TextBlock 
@@ -57,7 +68,7 @@
                         Text="{Binding Path=MonthText}"/>
                     </Button>
                 </DataTemplate>
-            </FlipView.ItemTemplate>
-        </FlipView>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>

@@ -18,9 +18,19 @@
             <TextBlock Margin="10 10 10 0">题 :</TextBlock>
             <TextBox x:Name="Title" TextWrapping="Wrap" Margin="10 10"></TextBox>
         </StackPanel>
-        <StackPanel Grid.Row="1">
+        <StackPanel 
+            
+            Grid.Row="1">
             <TextBlock Margin="10 0">文 :</TextBlock>
-            <RichEditBox x:Name="Content" Height="auto" MinHeight="400" Grid.Row="1" TextWrapping="Wrap" Margin="10 10"></RichEditBox>
+            <RichEditBox ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                         ScrollViewer.VerticalScrollMode="Enabled" 
+                         x:Name="Content"
+                         MinHeight="400" 
+                         MaxHeight="400"
+                         Grid.Row="1" 
+                         TextWrapping="Wrap" 
+                         Margin="10 10">
+            </RichEditBox>
         </StackPanel>
         <StackPanel HorizontalAlignment="Right" Grid.Row="2">
             <Button Style="{StaticResource TextButton}" x:Name="Finished" Click="Finished_Click" Background="Transparent">

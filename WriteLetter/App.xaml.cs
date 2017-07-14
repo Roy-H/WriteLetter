@@ -19,6 +19,7 @@ using Windows.UI.Xaml.Navigation;
 using WriteLetter.Views;
 using Windows.UI.ViewManagement;
 using System.Threading.Tasks;
+using Windows.UI.Notifications;
 
 namespace WriteLetter
 {
@@ -42,9 +43,9 @@ namespace WriteLetter
             {                
                 rootFrame = new Frame();
 
-                rootFrame.NavigationFailed += OnNavigationFailed;
-                rootFrame.KeyUp += RootFrame_KeyUp;
-                SystemNavigationManager.GetForCurrentView().BackRequested += App_BackRequested;
+                rootFrame.NavigationFailed += OnNavigationFailed;                
+                SystemNavigationManager.GetForCurrentView().BackRequested += App_BackRequested;                
+                //SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = rootFrame.CanGoBack ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
                     
@@ -79,39 +80,48 @@ namespace WriteLetter
             }
             else if (e.Handled == false)
             {
-
-                StatusBar statusBar = StatusBar.GetForCurrentView();
-                statusBar.ShowAsync();
-                statusBar.ForegroundColor = Colors.White; 
-                statusBar.BackgroundOpacity = 0.9; 
-                statusBar.ProgressIndicator.Text = "再按一次返回键退出程序。"; 
-                statusBar.ProgressIndicator.ShowAsync();
-
-                if (isExit)
+                try
                 {
-                    App.Current.Exit();
-                }
-                else
-                {
-                    isExit = true;
-                    Task.Run(async () =>
+                    StatusBar statusBar = StatusBar.GetForCurrentView();
+                    statusBar.ShowAsync();
+                    statusBar.ForegroundColor = Colors.White;
+                    statusBar.BackgroundOpacity = 0.9;
+                    statusBar.ProgressIndicator.Text = "再按一次返回键退出程序。";
+                    statusBar.ProgressIndicator.ShowAsync();
+
+                    //Windows.Data.Xml.Dom.XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText01);
+                    //Windows.Data.Xml.Dom.XmlNodeList elements = toastXml.GetElementsByTagName("text");
+                    //elements[0].AppendChild(toastXml.CreateTextNode("再按一次返回键退出程序。"));
+                    //ToastNotification toast = new ToastNotification(toastXml);                
+                    //ToastNotificationManager.CreateToastNotifier().Show(toast);
+
+                    if (isExit)
                     {
-                        //Windows.Data.Xml.Dom. XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText01);  
-                        //Windows.Data.Xml.Dom.XmlNodeList elements = toastXml.GetElementsByTagName("text");  
-                        //elements[0].AppendChild(toastXml.CreateTextNode("再按一次返回键退出程序。"));  
-                        //ToastNotification toast = new ToastNotification(toastXml);  
-                        //ToastNotificationManager.CreateToastNotifier().Show(toast);       
-
-                        await Task.Delay(1500);
-                        await rootFrame.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                        App.Current.Exit();
+                    }
+                    else
+                    {
+                        isExit = true;
+                        Task.Run(async () =>
                         {
-                            statusBar.ProgressIndicator.HideAsync();
-                            statusBar.HideAsync();
+                            await Task.Delay(1500);
+                            await rootFrame.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                            {
+
+                                statusBar.ProgressIndicator.HideAsync();
+                                statusBar.HideAsync();
+                            });
+                            isExit = false;
                         });
-                        isExit = false;
-                    });
-                    e.Handled = true;
+                        e.Handled = true;
+                    }
                 }
+                catch (Exception)
+                {
+
+                    //throw;
+                }
+                
             }
         }
 

@@ -32,8 +32,8 @@ namespace WriteLetter.ViewModels
         
         public void AddYear(YearViewModel year)
         {
-            yearViewModels.Add(year);
+            yearViewModels.Insert(0,year);
             OnPropertyChanged("YearViewModels");
-        }
+        }        
     }
 }

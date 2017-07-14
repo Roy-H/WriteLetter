@@ -28,14 +28,14 @@ namespace WriteLetter.Views
         YearViewModel ViewModel = null;
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             //SystemNavigationManager.GetForCurrentView().BackRequested += MonthView_BackRequested; ;
             base.OnNavigatedTo(e);
             if (e.Parameter != null)
             {
                 ViewModel = (YearViewModel)e.Parameter;
                 this.DataContext = ViewModel;                
-            }                   
+            }
         }
 
         private void MonthView_BackRequested(object sender, BackRequestedEventArgs e)

@@ -56,6 +56,7 @@ namespace WriteLetter.Views
         private void Eidt_Click(object sender, RoutedEventArgs e)
         {
             var frame = Window.Current.Content as Frame;
+            ViewModel.LetterEidtType = EidtType.Change;
             frame.Navigate(typeof(EditingView), ViewModel);
         }
 
@@ -76,10 +77,11 @@ namespace WriteLetter.Views
             var msgDialog = new Windows.UI.Popups.MessageDialog("确定删除这封信吗？") { Title = "删除确认" };
             msgDialog.Commands.Add(new Windows.UI.Popups.UICommand("确定",async uiCommand => {
                 var frame = Window.Current.Content as Frame;                
-                await  DataManager.DeleteLetterAndSave(ViewModel);
                 //var month = DataManager.GetMonthViewModelByTime(ViewModel.Time);
                 frame.GoBack();
+                await DataManager.DeleteLetterAndSave(ViewModel);
                 DataManager.Data.OnPropertyChanged("YearViewModels");
+
             }));
             msgDialog.Commands.Add(new Windows.UI.Popups.UICommand("取消", uiCommand => { }));
             await msgDialog.ShowAsync();

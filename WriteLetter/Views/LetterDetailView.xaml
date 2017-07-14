@@ -13,21 +13,33 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <ListView 
-            Margin="20 20 20 0"
-            ItemContainerStyle="{StaticResource HorizontalItemContainerStyle}"
-            ItemsPanel="{StaticResource HorizontalItemsPanelTemplate}"
-            ScrollViewer.HorizontalScrollMode="Enabled"
-            ScrollViewer.HorizontalScrollBarVisibility="Auto"            
-            ScrollViewer.VerticalScrollMode="Disabled"
+        <GridView 
+            IsItemClickEnabled="False"
+            Margin="20 20 20 0"            
+            ScrollViewer.HorizontalScrollMode="Disabled"
+            ScrollViewer.HorizontalScrollBarVisibility="Hidden"    
+            ScrollViewer.VerticalScrollBarVisibility="Hidden"  
+            ScrollViewer.VerticalScrollMode="Enabled"
             Background="Transparent">
-            <StackPanel Orientation="Vertical">
+            <StackPanel                
+                Margin="20 20 20 0"
+                Orientation="Vertical">
                 <TextBlock Style="{StaticResource TextStyle}" Text="{Binding Path=Title}"></TextBlock>
+
+                <TextBlock                     
+                    x:Name="TextBlock" 
+                    TextWrapping="Wrap"                    
+                    Style="{StaticResource TextMinStyle}" 
+                    Text="{Binding Path=Content}">
+                    
+                </TextBlock>
+                <RichTextBlock ScrollViewer.VerticalScrollMode="Enabled" x:Name="RichTextBlock" TextWrapping="Wrap" MaxHeight="450" Width="auto">
                 
-                <TextBlock x:Name="TextBlock" MaxWidth="1000" TextWrapping="Wrap" Style="{StaticResource TextMinStyle}" Text="{Binding Path=Content}"></TextBlock>
-                <RichTextBlock x:Name="RichTextBlock" TextWrapping="Wrap" ScrollViewer.VerticalScrollMode="Enabled" Width="auto"></RichTextBlock>
+                </RichTextBlock>
+                <TextBlock Width="auto" TextAlignment="Right" Margin="0 40 0 0" Text="{Binding TimeText}" Style="{StaticResource TextTinyStyle}"></TextBlock>
             </StackPanel>
-        </ListView>
+            
+        </GridView>
         <Grid Grid.Row="1" Background="Transparent">
             <StackPanel   Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button x:Name="Eidt" Click="Eidt_Click" Margin="20 10 20 0" Style="{StaticResource TextButton}">
@@ -37,9 +49,7 @@
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextStyle}">改</TextBlock>
                     </Grid>
                 </Button>
-                <!--<Button x:Name="Eidt" Width="60" Height="60" Background="#C6001F" Margin="20 20" Click="Eidt_Click">
-                    <TextBlock Style="{StaticResource TextStyle}">改</TextBlock>
-                </Button>-->
+                
                 <Button x:Name="Save" Click="Save_Click" Margin="20 10 20 0" Style="{StaticResource TextButton}">
                     <Grid Width="60" Height="60" CacheMode="BitmapCache">
                         <Ellipse Fill="DarkGray" Width="60" Height="60"></Ellipse>
@@ -47,9 +57,7 @@
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextStyle}">存</TextBlock>
                     </Grid>
                 </Button>
-                <!--<Button x:Name="Save" Width="60" Height="60" Background="#C6001F" Margin="20 20" Click="Save_Click">
-                    <TextBlock Style="{StaticResource TextStyle}">存</TextBlock>
-                </Button>-->
+
                 <Button x:Name="Delete" Click="Delete_Click" Margin="20 10 20 0" Style="{StaticResource TextButton}">
                     <Grid Width="60" Height="60" CacheMode="BitmapCache">
                         <Ellipse Fill="DarkGray" Width="60" Height="60"></Ellipse>
@@ -57,10 +65,6 @@
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextStyle}">删</TextBlock>
                     </Grid>
                 </Button>
-                <!--<Button x:Name="Delete" Width="60" Height="60" Background="#C6001F" Margin="20 20" Click="Delete_Click">
-                    <TextBlock Style="{StaticResource TextStyle}">删</TextBlock>
-                </Button>-->
-                
             </StackPanel>
         </Grid>
         
