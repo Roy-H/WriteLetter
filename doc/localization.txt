@@ -1,0 +1,1 @@
+https://docs.microsoft.com/zh-cn/windows/uwp/app-resources/localize-strings-ui-manifest
