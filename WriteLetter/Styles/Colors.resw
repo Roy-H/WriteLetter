@@ -117,12 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="IDS_APP_NAME" xml:space="preserve">
-    <value>见字如晤</value>
-    <comment>app name</comment>
+  <data name="COLOR_FALL" xml:space="preserve">
+    <value>#FFE78F</value>
   </data>
-  <data name="IDS_TEST" xml:space="preserve">
-    <value>测试</value>
-    <comment>a test string</comment>
+  <data name="COLOR_SPRING" xml:space="preserve">
+    <value>#97CCBE</value>
+  </data>
+  <data name="COLOR_SUMMAR" xml:space="preserve">
+    <value>#FFB900</value>
+  </data>
+  <data name="COLOR_WINTER" xml:space="preserve">
+    <value>#89AFD7</value>
   </data>
 </root>

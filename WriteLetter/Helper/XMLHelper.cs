@@ -1,24 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 using System.IO;
-using XmlReader = System.Xml.XmlReader;
-using XmlWriter = System.Xml.XmlWriter;
-using StreamWriter = System.IO.StreamWriter;
-using StreamReader = System.IO.StreamReader;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Serialization;
-
-using Newtonsoft.Json;
-using WriteLetter.ViewModels;
-using System.Runtime.Serialization;
-using System.Xml;
 using System.Runtime.Serialization.Json;
 
-namespace WriteLetter.Helper
+namespace AppCore.Helper
 {
     static class DataHelper
     {        

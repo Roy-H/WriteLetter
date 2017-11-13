@@ -1,0 +1,58 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+
+<#
+    //this.StringDefinitions = LoadStringDefinitions();
+
+    WriteLine("// *******************************************");
+    WriteLine("// *** Auto-generated code. Do not modify! ***");
+    WriteLine("// *******************************************");
+ #>
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using System.Windows;
+using System.Windows.Markup;
+
+namespace AppCore
+{
+	/// <summary>
+	/// Provide code access to string ressources.
+	/// </summary>
+	internal static class Strings
+	{
+        #region String accessor properties
+<#
+    foreach (var def in this.StringDefinitions)
+    {
+        Write(Environment.NewLine);
+        WriteLine("        [SuppressMessage(\"Microsoft.Performance\", \"CA1811:AvoidUncalledPrivateCode\")]");
+        WriteLine("        public static String " + def.Key + " { get { return Nero.Duplicate.Resources.StringLoader.LoadString(StringId." + def.Key + "); } }");
+    }
+ #>
+
+        #endregion
+    }
+
+    /// <summary>
+    /// IDs of all available strings.
+    /// </summary>
+    internal static class StringId
+    {<#
+    var sep = string.Empty;
+    foreach (var def in this.StringDefinitions)
+    {
+        Write(Environment.NewLine + "        public const String " + def.Key + " = \"" + def.Key + "\";");
+        sep = ",";
+    }
+
+    Write(Environment.NewLine);
+ #>
+    }
+}
