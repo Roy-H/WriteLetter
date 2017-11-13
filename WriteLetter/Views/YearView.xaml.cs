@@ -14,7 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using WriteLetter.Helper;
+using AppCore.Helper;
 using WriteLetter.ViewModels;
 
 namespace WriteLetter.Views
@@ -28,11 +28,11 @@ namespace WriteLetter.Views
         {
             get
             {
-                return DataManager.Data;
+                return DataManager.Instance.Data;
             }
             set
             {
-                DataManager.Data = value;
+                DataManager.Instance.Data = value;
             }
         }        
 
@@ -40,6 +40,7 @@ namespace WriteLetter.Views
         {
             this.InitializeComponent();
             Initialize();
+            
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
             //NavigationCacheMode = NavigationCacheMode.Enabled;
         }
@@ -60,7 +61,7 @@ namespace WriteLetter.Views
         {
             try
             {
-                var data = await DataManager.LoadData();
+                var data = await DataManager.Instance.LoadData();
                 if (data is DataViewModel)
                 {
                     Data = data as DataViewModel;

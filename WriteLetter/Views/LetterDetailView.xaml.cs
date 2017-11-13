@@ -13,7 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using WriteLetter.Helper;
+using AppCore.Helper;
 using WriteLetter.ViewModels;
 
 namespace WriteLetter.Views
@@ -79,8 +79,8 @@ namespace WriteLetter.Views
                 var frame = Window.Current.Content as Frame;                
                 //var month = DataManager.GetMonthViewModelByTime(ViewModel.Time);
                 frame.GoBack();
-                await DataManager.DeleteLetterAndSave(ViewModel);
-                DataManager.Data.OnPropertyChanged("YearViewModels");
+                await DataManager.Instance.DeleteLetterAndSave(ViewModel);
+                DataManager.Instance.Data.OnPropertyChanged("YearViewModels");
 
             }));
             msgDialog.Commands.Add(new Windows.UI.Popups.UICommand("取消", uiCommand => { }));

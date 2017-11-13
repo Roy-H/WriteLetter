@@ -11,12 +11,23 @@ namespace WriteLetter.ViewModels
     [DataContract]
     public class DataViewModel:ViewModelBase
     {
+        [DataMember]
+        private string dataVersion = "1.0.0";
+
+        public string Version
+        {
+            get
+            {
+                return dataVersion;
+            }
+        }
+
         public DataViewModel()
         {
             //if (yearViewModels == null)
             //{
             //    yearViewModels = new ObservableCollection<YearViewModel>();
-            //    yearViewModels.Add(new YearViewModel() {Time = DateTime.Now });              
+            //    yearViewModels.Add(new YearViewModel() {Time = DateTime.Now });
         }
         [DataMember]
         private ObservableCollection<YearViewModel> yearViewModels = new ObservableCollection<YearViewModel>();
@@ -28,7 +39,6 @@ namespace WriteLetter.ViewModels
                 return yearViewModels;
             }            
         }
-
         
         public void AddYear(YearViewModel year)
         {

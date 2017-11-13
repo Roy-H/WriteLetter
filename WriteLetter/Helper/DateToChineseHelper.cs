@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WriteLetter.Helper
+namespace AppCore.Helper
 {
     
     public class DateToChineseHelper

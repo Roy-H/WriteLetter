@@ -13,7 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using WriteLetter.Helper;
+using AppCore.Helper;
 using WriteLetter.ViewModels;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
@@ -89,8 +89,8 @@ namespace WriteLetter.Views
                     string content = string.Empty;
                     Content.Document.GetText(Windows.UI.Text.TextGetOptions.None,out content);
                     viewModel.Content = content == null?string.Empty: content;
-                    await DataManager.SaveData(null);
-                    DataManager.Data.OnPropertyChanged("YearViewModels");
+                    await DataManager.Instance.SaveData(null);
+                    DataManager.Instance.Data.OnPropertyChanged("YearViewModels");
                     break;
                 case EidtType.Create:
                     string content2 = string.Empty;
@@ -98,8 +98,8 @@ namespace WriteLetter.Views
                     viewModel.Content = content2 == null ? string.Empty : content2;
                     viewModel.Title = Title.Text;
                     viewModel.Time = DateTime.Now;
-                    await DataManager.AddOneLetterToDataAndSave(viewModel);
-                    DataManager.Data.OnPropertyChanged("YearViewModels");
+                    await DataManager.Instance.AddOneLetterToDataAndSave(viewModel);
+                    DataManager.Instance.Data.OnPropertyChanged("YearViewModels");
                     break;
                 default:
                     break;

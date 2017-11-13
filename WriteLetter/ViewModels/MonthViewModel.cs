@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using WriteLetter.Helper;
+using AppCore.Helper;
 using WriteLetter.Views;
 
 namespace WriteLetter.ViewModels
