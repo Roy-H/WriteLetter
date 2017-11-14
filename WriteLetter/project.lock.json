@@ -16385,19 +16385,19 @@
     "UAP,Version=v10.0.14393": []
   },
   "packageFolders": {
-    "C:\\Users\\Huang\\.nuget\\packages\\": {}
+    "C:\\Users\\rhuang.NERO-CN\\.nuget\\packages\\": {}
   },
   "project": {
     "restore": {
-      "projectUniqueName": "D:\\code\\UWP\\WriteLetter\\WriteLetter\\WriteLetter\\WriteLetter.csproj",
+      "projectUniqueName": "D:\\Code\\UWP\\WriteLetter\\WriteLetter\\WriteLetter.csproj",
       "projectName": "WriteLetter",
-      "projectPath": "D:\\code\\UWP\\WriteLetter\\WriteLetter\\WriteLetter\\WriteLetter.csproj",
-      "projectJsonPath": "D:\\code\\UWP\\WriteLetter\\WriteLetter\\WriteLetter\\project.json",
-      "packagesPath": "C:\\Users\\Huang\\.nuget\\packages\\",
-      "outputPath": "D:\\code\\UWP\\WriteLetter\\WriteLetter\\WriteLetter\\obj\\",
+      "projectPath": "D:\\Code\\UWP\\WriteLetter\\WriteLetter\\WriteLetter.csproj",
+      "projectJsonPath": "D:\\Code\\UWP\\WriteLetter\\WriteLetter\\project.json",
+      "packagesPath": "C:\\Users\\rhuang.NERO-CN\\.nuget\\packages\\",
+      "outputPath": "D:\\Code\\UWP\\WriteLetter\\WriteLetter\\obj\\",
       "projectStyle": "ProjectJson",
       "configFilePaths": [
-        "C:\\Users\\Huang\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\rhuang.NERO-CN\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "sources": {
