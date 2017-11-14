@@ -118,6 +118,7 @@
     <Compile Include="SDK\Controls\ExtendedSplashScreen.xaml.cs">
       <DependentUpon>ExtendedSplashScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SDK\OneDrive\OneDriveHelper.cs" />
     <Compile Include="Strings\StringProvider.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

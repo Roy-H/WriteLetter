@@ -121,7 +121,7 @@
     <value>see your letter as your face</value>
     <comment>app name</comment>
   </data>
-  <data name="IDS_TEST" xml:space="preserve">
+  <data name="IDS_TEST_STRING" xml:space="preserve">
     <value>test string</value>
     <comment>a test string</comment>
   </data>
