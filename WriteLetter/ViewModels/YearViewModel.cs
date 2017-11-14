@@ -59,7 +59,6 @@ namespace WriteLetter.ViewModels
 
         private void EnterYear()
         {
-
             OneDriveHelper.Instance.InitializeClient(OneDriveHelper.ClientType.ConsumerUwp);
             if (monthViewModels.Count == 0)
             {

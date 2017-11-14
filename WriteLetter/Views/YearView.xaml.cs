@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using AppCore.Helper;
 using WriteLetter.ViewModels;
+using Windows.Storage.Pickers;
 
 namespace WriteLetter.Views
 {
@@ -102,6 +103,49 @@ namespace WriteLetter.Views
             //{
             //    var task = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => UpdateStatus(strMessage, type));
             //}
+        }
+
+        private void login_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void logout_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private async void uploadfile_Click(object sender, RoutedEventArgs e)
+        {
+            var picker = new FileOpenPicker();
+            picker.ViewMode = PickerViewMode.Thumbnail;
+            picker.FileTypeFilter.Add(".txt");
+
+            var file = await picker.PickSingleFileAsync();
+            if(file != null)
+            {
+                onedriveHepler
+            }
+        }
+
+        private void savefile_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void makefolder_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void download_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void delete_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
     public enum NotifyType

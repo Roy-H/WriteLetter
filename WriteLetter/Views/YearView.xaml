@@ -51,6 +51,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="0" Source="ms-appx:///Assets/img/left_small.png" Stretch="None"></Image>
             <ads:AdControl                
@@ -61,6 +62,15 @@
                 Width="300" Height="100"
                 AdRefreshed="OnAdRefreshed"
                 ErrorOccurred="OnErrorOccurred"/>
+            <StackPanel Grid.Column="2">
+                <Button Width="30" Height="20" Margin="10" x:Name="login" Click="login_Click">login</Button>
+                <Button Width="30" Height="20" Margin="10" x:Name="logout" Click="logout_Click">logout</Button>
+                <Button Width="30" Height="20" Margin="10" x:Name="uploadfile" Click="uploadfile_Click">upload file</Button>
+                <Button Width="30" Height="20" Margin="10" x:Name="savefile" Click="savefile_Click">save file</Button>
+                <Button Width="30" Height="20" Margin="10" x:Name="makefolder" Click="makefolder_Click">make folder</Button>
+                <Button Width="30" Height="20" Margin="10" x:Name="download" Click="download_Click">download file</Button>
+                <Button Width="30" Height="20" Margin="10" x:Name="delete" Click="delete_Click">delete file</Button>
+            </StackPanel>
         </Grid>
     </Grid>
 </Page>

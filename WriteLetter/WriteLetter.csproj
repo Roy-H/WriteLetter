@@ -118,6 +118,9 @@
     <Compile Include="SDK\Controls\ExtendedSplashScreen.xaml.cs">
       <DependentUpon>ExtendedSplashScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SDK\Controls\OneDriveStatusSign.xaml.cs">
+      <DependentUpon>OneDriveStatusSign.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SDK\OneDrive\OneDriveHelper.cs" />
     <Compile Include="Strings\StringProvider.cs">
       <AutoGen>True</AutoGen>
@@ -181,6 +184,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SDK\Controls\ExtendedSplashScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SDK\Controls\OneDriveStatusSign.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
