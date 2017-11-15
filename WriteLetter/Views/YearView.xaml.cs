@@ -124,7 +124,7 @@ namespace WriteLetter.Views
             var file = await picker.PickSingleFileAsync();
             if(file != null)
             {
-                onedriveHepler
+                //onedriveHepler
             }
         }
 

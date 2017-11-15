@@ -115,6 +115,10 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SDK\Controls\DropShadowPanel.Properties.cs" />
+    <Compile Include="SDK\Controls\DropShadowPanel.xaml.cs">
+      <DependentUpon>DropShadowPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SDK\Controls\ExtendedSplashScreen.xaml.cs">
       <DependentUpon>ExtendedSplashScreen.xaml</DependentUpon>
     </Compile>
@@ -180,6 +184,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SDK\Controls\DropShadowPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
