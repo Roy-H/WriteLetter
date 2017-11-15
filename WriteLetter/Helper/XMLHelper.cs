@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using System.IO;
 using System.Runtime.Serialization.Json;
+using System.Diagnostics;
 
 namespace AppCore.Helper
 {
@@ -37,25 +38,46 @@ namespace AppCore.Helper
         }
 
         static public async Task Save(Type type,object obj, string fileName)
-        {            
+        {
+            
+            StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+            StorageFile tempFile = null;
+            
+            StorageFile orgFile = await storageFolder.TryGetItemAsync(fileName) as StorageFile;
             try
             {
-                StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
-                var file = await storageFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
-                var ser = new DataContractJsonSerializer(type);      
+                tempFile = await storageFolder.CreateFileAsync(fileName, CreationCollisionOption.GenerateUniqueName);
+                var ser = new DataContractJsonSerializer(type);
                 MemoryStream stream = new MemoryStream();
                 ser.WriteObject(stream, obj);
-                string szJson = Encoding.UTF8.GetString(stream.ToArray());
 
-                StorageFile sampleFile = await storageFolder.GetFileAsync(fileName);
-                await FileIO.WriteTextAsync(sampleFile, szJson);
-                await AppCore.SDK.OneDrive.OneDriveHelper.Instance.UpLoadFile(stream, storageFolder.Path+fileName);
+                string szJson = Encoding.UTF8.GetString(stream.ToArray());
+                //await storageFolder.CreateFileAsync(file_name, CreationCollisionOption.GenerateUniqueName);
+                
+                await FileIO.WriteTextAsync(tempFile, szJson);
+                await AppCore.SDK.OneDrive.OneDriveHelper.Instance.UpLoadFile(tempFile);
             }
             catch (Exception ex)
             {
+                Debug.Assert(ex != null, "Serializer error_" + ex.Message);
+                //throw ex;
+            }
+            if (tempFile != null)
+            {
+                try
+                {
+                    if (orgFile != null)
+                        await orgFile.DeleteAsync();
 
-                throw ex;
-            }   
+                    await tempFile.RenameAsync(fileName);
+                }
+                catch (Exception ex)
+                {
+                    Debug.Assert(ex != null, "delete old data file error_"+ ex.Message);
+                }
+                
+            }
+
         }
 
         private static async void TransferData()
