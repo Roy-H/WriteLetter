@@ -11,7 +11,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using AppCore.Helper;
 using WriteLetter.Views;
-using WriteLetter.SDK.OneDrive;
+using AppCore.SDK.OneDrive;
 
 namespace WriteLetter.ViewModels
 {
@@ -59,7 +59,7 @@ namespace WriteLetter.ViewModels
 
         private void EnterYear()
         {
-            OneDriveHelper.Instance.InitializeClient(OneDriveHelper.ClientType.ConsumerUwp);
+            OneDriveHelper.Instance.InitializeClient(OneDriveHelper.ClientType.Consumer);
             if (monthViewModels.Count == 0)
             {
                 monthViewModels.Add(new MonthViewModel(DateTime.Now));

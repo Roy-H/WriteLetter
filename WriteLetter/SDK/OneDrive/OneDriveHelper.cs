@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using System.IO;
+using WriteLetter;
 
 namespace AppCore.SDK.OneDrive
 {
@@ -167,16 +168,24 @@ namespace AppCore.SDK.OneDrive
 
         private async Task UploadItem(Stream stream,string itemPath)
         {
-            using (stream)
+            try
             {
-                var uploadedItem = await OneDriveClient
-                                           .Drive
-                                           .Root
-                                           .ItemWithPath(itemPath)
-                                           .Content
-                                           .Request()
-                                           .PutAsync<Item>(stream);
+                using (stream)
+                {
+                    var uploadedItem = await OneDriveClient
+                                               .Drive
+                                               .Root
+                                               .ItemWithPath(itemPath)
+                                               .Content
+                                               .Request()
+                                               .PutAsync<Item>(stream);
+                }
             }
+            catch (Exception ex)
+            {
+                Debug.Assert(true, ex.Message);                
+            }
+            
         }
 
         public bool IsAuthed()

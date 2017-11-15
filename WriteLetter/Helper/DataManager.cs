@@ -47,6 +47,8 @@ namespace AppCore.Helper
                 Data = new DataViewModel();
                 await DataHelper.Save(typeof(DataViewModel), Data, fileName);
             }
+
+            
         }
 
          public async Task<object> LoadData()

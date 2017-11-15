@@ -48,7 +48,8 @@ namespace AppCore.Helper
                 string szJson = Encoding.UTF8.GetString(stream.ToArray());
 
                 StorageFile sampleFile = await storageFolder.GetFileAsync(fileName);
-                await FileIO.WriteTextAsync(sampleFile, szJson);          
+                await FileIO.WriteTextAsync(sampleFile, szJson);
+                await AppCore.SDK.OneDrive.OneDriveHelper.Instance.UpLoadFile(stream, storageFolder.Path+fileName);
             }
             catch (Exception ex)
             {
