@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using System.IO;
 using WriteLetter;
+using Windows.Storage;
 
 namespace AppCore.SDK.OneDrive
 {
@@ -54,7 +55,7 @@ namespace AppCore.SDK.OneDrive
         private readonly string oneDriveConsumerClientId = "00000000401CCC5B";
         private readonly string oneDriveConsumerReturnUrl = "https://login.live.com/oauth20_desktop.srf";
         private readonly string oneDriveConsumerBaseUrl = "https://api.onedrive.com/v1.0";
-        private readonly string[] scopes = new string[] { "onedrive.readonly", "wl.signin", "offline_access" };
+        private readonly string[] scopes = new string[] { "onedrive.appfolder", "onedrive.readwrite", "wl.signin", "offline_access" };
 
         public enum ClientType
         {
@@ -209,6 +210,22 @@ namespace AppCore.SDK.OneDrive
             {
                 return false;
             }            
+            return true;
+        }
+        public async Task<bool> UpLoadFile(StorageFile file)
+        {
+            try
+            {
+                using (var stream = await file.OpenStreamForReadAsync())
+                {
+                    await UploadItem(stream, file.Name);                  
+                }
+                
+            }
+            catch (Exception)
+            {
+                return false;
+            }
             return true;
         }
 

@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Navigation;
 using AppCore.Helper;
 using WriteLetter.ViewModels;
 using Windows.Storage.Pickers;
+using AppCore.SDK.OneDrive;
 
 namespace WriteLetter.Views
 {
@@ -117,14 +118,14 @@ namespace WriteLetter.Views
 
         private async void uploadfile_Click(object sender, RoutedEventArgs e)
         {
-            var picker = new FileOpenPicker();
-            picker.ViewMode = PickerViewMode.Thumbnail;
-            picker.FileTypeFilter.Add(".txt");
-
+            
+            var picker = new FileOpenPicker { SuggestedStartLocation = PickerLocationId.DocumentsLibrary };
+            picker.FileTypeFilter.Add("*");
             var file = await picker.PickSingleFileAsync();
-            if(file != null)
+            using (var stream = await file.OpenStreamForReadAsync())
             {
-                //onedriveHepler
+                //var item = await _client.Drive.Special.AppRoot.ItemWithPath(file.Name).Content.Request().PutAsync<Item>(stream);  // Save for the GetLink demo  _savedId = item.Id;}
+                var item = await OneDriveHelper.Instance.UpLoadFile(stream, file.Name);
             }
         }
 
