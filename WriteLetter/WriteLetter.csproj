@@ -96,6 +96,7 @@
     <Content Include="Assets\fonts\FZLongZhaoJW.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SDK\Icons\ic_backup_black_24dp.png" />
     <Content Include="Strings\StringProvider.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>StringProvider.cs</LastGenOutput>
@@ -125,7 +126,13 @@
     <Compile Include="SDK\Controls\OneDriveStatusSign.xaml.cs">
       <DependentUpon>OneDriveStatusSign.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SDK\Controls\OneDriveWaitSign.xaml.cs">
+      <DependentUpon>OneDriveWaitSign.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SDK\OneDrive\OneDriveHelper.cs" />
+    <Compile Include="SDK\Views\ControlTest.xaml.cs">
+      <DependentUpon>ControlTest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Strings\StringProvider.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -196,6 +203,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SDK\Controls\OneDriveStatusSign.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SDK\Controls\OneDriveWaitSign.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SDK\Views\ControlTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

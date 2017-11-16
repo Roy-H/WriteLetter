@@ -17,11 +17,24 @@ using Windows.UI.Xaml.Navigation;
 
 namespace AppCore.SDK.Controls
 {
-    public sealed partial class OneDriveStatusSign : UserControl
+    public sealed partial class OneDriveWaitSign : UserControl
     {
-        public OneDriveStatusSign()
+        public OneDriveWaitSign()
         {
             this.InitializeComponent();
         }
+
+
+        public bool IsActive
+        {
+            get { return (bool)GetValue(IsActiveProperty); }
+            set { SetValue(IsActiveProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for IsActive.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IsActiveProperty =
+            DependencyProperty.Register("IsActive", typeof(bool), typeof(OneDriveWaitSign), new PropertyMetadata(false));
+
+
     }
 }
