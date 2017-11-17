@@ -10,10 +10,6 @@ using Windows.UI.Xaml.Shapes;
 
 namespace AppCore.SDK.Controls
 {
-    /// <summary>
-    /// The <see cref="DropShadowPanel"/> control allows the creation of a DropShadow for any Xaml FrameworkElement in markup
-    /// making it easier to add shadows to Xaml without having to directly drop down to Windows.UI.Composition APIs.
-    /// </summary>
     [TemplatePart(Name = PartShadow, Type = typeof(Border))]
     public partial class DropShadowPanel : ContentControl
     {
@@ -95,7 +91,7 @@ namespace AppCore.SDK.Controls
 
         private void ConfigureShadowVisualForCastingElement()
         {
-            //UpdateShadowMask();
+            UpdateShadowMask();
 
             if (IsSupported)
             {
@@ -151,59 +147,59 @@ namespace AppCore.SDK.Controls
             }
         }
 
-        //private void UpdateShadowMask()
-        //{
-        //    if (!IsSupported)
-        //    {
-        //        return;
-        //    }
+        private void UpdateShadowMask()
+        {
+            if (!IsSupported)
+            {
+                return;
+            }
 
-        //    if (Content != null)
-        //    {
-        //        CompositionBrush mask = null;
+            if (Content != null)
+            {
+                CompositionBrush mask = null;
 
-        //        if (Content is Image)
-        //        {
-        //            mask = ((Image)Content).GetAlphaMask();
-        //        }
-        //        else if (Content is Shape)
-        //        {
-        //            mask = ((Shape)Content).GetAlphaMask();
-        //        }
-        //        else if (Content is TextBlock)
-        //        {
-        //            mask = ((TextBlock)Content).GetAlphaMask();
-        //        }
-        //        else if (Content is ImageExBase imageExBase)
-        //        {
-        //            imageExBase.ImageExInitialized += ImageExInitialized;
+                if (Content is Image)
+                {
+                    mask = ((Image)Content).GetAlphaMask();
+                }
+                else if (Content is Shape)
+                {
+                    mask = ((Shape)Content).GetAlphaMask();
+                }
+                else if (Content is TextBlock)
+                {
+                    mask = ((TextBlock)Content).GetAlphaMask();
+                }
+                else if (Content is ImageExBase imageExBase)
+                {
+                    imageExBase.ImageExInitialized += ImageExInitialized;
 
-        //            if (imageExBase.IsInitialized)
-        //            {
-        //                imageExBase.ImageExInitialized -= ImageExInitialized;
+                    if (imageExBase.IsInitialized)
+                    {
+                        imageExBase.ImageExInitialized -= ImageExInitialized;
 
-        //                mask = ((ImageExBase)Content).GetAlphaMask();
-        //            }
-        //        }
+                        mask = ((ImageExBase)Content).GetAlphaMask();
+                    }
+                }
 
-        //        _dropShadow.Mask = mask;
-        //    }
-        //    else
-        //    {
-        //        _dropShadow.Mask = null;
-        //    }
-        //}
+                _dropShadow.Mask = mask;
+            }
+            else
+            {
+                _dropShadow.Mask = null;
+            }
+        }
 
-        //private void ImageExInitialized(object sender, EventArgs e)
-        //{
-        //    var imageExBase = (ImageExBase)Content;
+        private void ImageExInitialized(object sender, EventArgs e)
+        {
+            var imageExBase = (ImageExBase)Content;
 
-        //    imageExBase.ImageExInitialized -= ImageExInitialized;
+            imageExBase.ImageExInitialized -= ImageExInitialized;
 
-        //    CompositionBrush mask = ((ImageExBase)Content).GetAlphaMask();
+            CompositionBrush mask = ((ImageExBase)Content).GetAlphaMask();
 
-        //    _dropShadow.Mask = mask;
-        //}
+            _dropShadow.Mask = mask;
+        }
 
         private void UpdateShadowOffset(float x, float y, float z)
         {
@@ -227,4 +223,5 @@ namespace AppCore.SDK.Controls
             }
         }
     }
+
 }

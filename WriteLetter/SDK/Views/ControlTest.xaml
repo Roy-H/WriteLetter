@@ -14,6 +14,41 @@
 
             <Button x:Name="BaseButton" Width="50" Height="50" Background="Red" Style="{StaticResource GoogleStyleButton}"></Button>
             <Image Stretch="None" Source="ms-appx:///SDK/Icons/ic_backup_black_24dp.png"></Image>
+            
+                <Button>
+                    <Button.Template>
+                        <ControlTemplate>
+                        <Grid>
+                            <controls:DropShadowPanel BlurRadius="8"
+                                    ShadowOpacity="0.7"
+                                    OffsetX="0"
+                                    OffsetY="2"
+                                    Color="Black"
+                                    Margin="20">
+                                <Ellipse Width="49" Height="49" Fill="#C6001F"/>
+                            </controls:DropShadowPanel>
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextMinStyle}">笺</TextBlock>
+                        </Grid>
+                        
+                    </ControlTemplate>
+                    </Button.Template>
+                    
+                </Button>
+                
+                <!-- <Button Margin="20 10 20 0" Style="{StaticResource TextButton}" Command="{Binding Path=CreateOneCommand}">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Grid Width="50" Height="50" CacheMode="BitmapCache">
+                                <Ellipse Fill="DarkGray" Width="50" Height="50"></Ellipse>
+                                <Ellipse Width="49" Height="49" Fill="#C6001F"></Ellipse>
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextMinStyle}">笺</TextBlock>
+                            </Grid>
+                        </ControlTemplate>
+                    
+                    </Button.Template>
+                    
+                </Button>-->
+            
         </StackPanel>
     </Grid>
 </Page>

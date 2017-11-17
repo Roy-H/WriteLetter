@@ -1,4 +1,5 @@
-﻿using Windows.ApplicationModel;
+﻿using AppCore.SDK.Helper;
+using Windows.ApplicationModel;
 using Windows.Foundation.Metadata;
 using Windows.UI;
 using Windows.UI.Composition;
@@ -6,10 +7,6 @@ using Windows.UI.Xaml;
 
 namespace AppCore.SDK.Controls
 {
-    /// <summary>
-    /// The <see cref="DropShadowPanel"/> control allows the creation of a DropShadow for any Xaml FrameworkElement in markup
-    /// making it easier to add shadows to Xaml without having to directly drop down to Windows.UI.Composition APIs.
-    /// </summary>
     public partial class DropShadowPanel
     {
         /// <summary>
@@ -55,7 +52,7 @@ namespace AppCore.SDK.Controls
         /// On platforms not supporting drop shadows, this control has no effect.
         /// </remarks>
         public static bool IsSupported =>
-            ApiInformation.IsTypePresent("Windows.UI.Composition.DropShadow"); // SDK >= 14393
+            (!DesignTimeHelpers.IsRunningInLegacyDesignerMode) && ApiInformation.IsTypePresent("Windows.UI.Composition.DropShadow"); // SDK >= 14393
 
         /// <summary>
         /// Gets DropShadow. Exposes the underlying composition object to allow custom Windows.UI.Composition animations.
