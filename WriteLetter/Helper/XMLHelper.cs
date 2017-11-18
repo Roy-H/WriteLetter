@@ -55,12 +55,12 @@ namespace AppCore.Helper
                 //await storageFolder.CreateFileAsync(file_name, CreationCollisionOption.GenerateUniqueName);
                 
                 await FileIO.WriteTextAsync(tempFile, szJson);
-                await AppCore.SDK.OneDrive.OneDriveHelper.Instance.UpLoadFile(tempFile);
+                //donot upload file to one drive here
+                //await AppCore.SDK.OneDrive.OneDriveHelper.Instance.UpLoadFile(tempFile);
             }
             catch (Exception ex)
             {
-                Debug.Assert(ex != null, "Serializer error_" + ex.Message);
-                //throw ex;
+                Debug.Assert(ex != null, "Serializer error_" + ex.Message);               
             }
             if (tempFile != null)
             {
@@ -74,10 +74,8 @@ namespace AppCore.Helper
                 catch (Exception ex)
                 {
                     Debug.Assert(ex != null, "delete old data file error_"+ ex.Message);
-                }
-                
+                }               
             }
-
         }
 
         private static async void TransferData()
