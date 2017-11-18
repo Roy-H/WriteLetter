@@ -5,6 +5,7 @@
     xmlns:local="using:AppCore.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sdkControls="using:AppCore.SDK.Controls"
     mc:Ignorable="d"
     Style="{StaticResource PageNormalStyle}">
 
@@ -49,11 +50,26 @@
             <StackPanel Grid.Column="1">
                 <TextBlock Foreground="Red" TextWrapping="Wrap"  MaxWidth="36" Text="{Binding Path=MonthText}" Margin="20 30"></TextBlock>
                 <Button Margin="20 10 20 0" Style="{StaticResource TextButton}" Command="{Binding Path=CreateOneCommand}">
-                    <Grid Width="50" Height="50" CacheMode="BitmapCache">
-                        <Ellipse Fill="DarkGray" Width="50" Height="50"></Ellipse>
-                        <Ellipse Width="49" Height="49" Fill="#C6001F"></Ellipse>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextMinStyle}">笺</TextBlock>
-                    </Grid>
+                    <Button.Template>
+                        <ControlTemplate>
+                        <Grid>
+                            <sdkControls:DropShadowPanel BlurRadius="8"
+                                    ShadowOpacity="0.7"
+                                    OffsetX="0"
+                                    OffsetY="2"
+                                    Color="Black"
+                                    Margin="20">
+                                <Ellipse Width="49" Height="49" Fill="#C6001F"/>
+                            </sdkControls:DropShadowPanel>
+                            <TextBlock 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center" 
+                            Foreground="White" 
+                            Style="{StaticResource TextMinStyle}" Text="笺"/>
+                        </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+                    
                 </Button>
                 
             </StackPanel>

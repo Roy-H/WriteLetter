@@ -25,7 +25,7 @@ namespace AppCore.Helper
         public DataViewModel Data { get; set; }
 
         const string fileName = "data.json";
-
+        const string fileNameOneDrive = "onedrive_backup.json";
         const string version = "1.0.0";
         const string newFileName = "data_" + version + ".json";
 
@@ -51,7 +51,7 @@ namespace AppCore.Helper
             
         }
 
-         public async Task<object> LoadData()
+        public async Task<object> LoadData()
         {
             object data = null;
             var fileExist = await ApplicationData.Current.LocalFolder.TryGetItemAsync(fileName) as StorageFile;
@@ -67,7 +67,26 @@ namespace AppCore.Helper
             return data;
         }
 
-         public MonthViewModel GetMonthViewModelByTime(DateTime time)
+        public async Task<DataViewModel> GetDataFromOneDrive()
+        {
+            DataViewModel dataViewModel = null;
+            var data = await DataHelper.LoadFromOneDrive(typeof(DataViewModel), fileNameOneDrive);
+            if (data != null && (data is DataViewModel))
+            {
+                dataViewModel = data as DataViewModel;
+            }
+            return dataViewModel;
+        }
+
+        public async Task<bool> UploadDataToOneDrive()
+        {
+            //DataViewModel dataViewModel = null;
+            var result = await DataHelper.UpLoadToOneDrive(typeof(DataViewModel), Data, fileNameOneDrive);
+            
+            return result;
+        }
+
+        public MonthViewModel GetMonthViewModelByTime(DateTime time)
         {
             foreach (var year in Data.YearViewModels)
             {
@@ -83,7 +102,7 @@ namespace AppCore.Helper
             return null;
         }
 
-         public YearViewModel GetYearViewModelByTime(DateTime time)
+        public YearViewModel GetYearViewModelByTime(DateTime time)
         {
             foreach (var year in Data.YearViewModels)
             {
@@ -95,7 +114,7 @@ namespace AppCore.Helper
             return null;
         }
 
-         public async Task DeleteLetterAndSave(LetterViewModel letter)
+        public async Task DeleteLetterAndSave(LetterViewModel letter)
         {
             foreach(var year in Data.YearViewModels)
             {
@@ -116,7 +135,7 @@ namespace AppCore.Helper
             await SaveData(null);
         }
 
-         public async Task AddOneLetterToDataAndSave(LetterViewModel letter)
+        public async Task AddOneLetterToDataAndSave(LetterViewModel letter)
         {
             if (Data == null)
                 Data = new DataViewModel();

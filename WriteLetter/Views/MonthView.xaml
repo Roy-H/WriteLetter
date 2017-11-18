@@ -5,10 +5,30 @@
     xmlns:local="using:AppCore.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sdkControls="using:AppCore.SDK.Controls"
     mc:Ignorable="d"
     Style="{StaticResource PageNormalStyle}">
     <Page.Resources>
-        
+        <ControlTemplate x:Key="oneLetterShadowButton" TargetType="Button">
+            <Grid>
+                <sdkControls:DropShadowPanel BlurRadius="8"
+                                    ShadowOpacity="0.7"
+                                    OffsetX="0"
+                                    OffsetY="2"
+                                    Color="Black"
+                                    Margin="20">
+                    <Ellipse Width="49" Height="49" Fill="#C6001F"/>
+                </sdkControls:DropShadowPanel>
+                <TextBlock 
+                                    HorizontalAlignment="Center" 
+                                    VerticalAlignment="Center" 
+                                    Foreground="White" 
+                                    Text="{TemplateBinding Content}"
+                                    Style="{StaticResource TextMinStyle}"/>
+
+            </Grid>
+        </ControlTemplate>
+        <DataTemplate x:Key="oneLetterShadowButtonData"></DataTemplate>
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -31,12 +51,27 @@
                 </StackPanel>
             </Grid>
             <StackPanel FlowDirection="RightToLeft" Orientation="Horizontal">
-                <Button Margin="20 10 20 0" Style="{StaticResource TextButton}" Command="{Binding Path=CreateOneCommand}">
-                    <Grid Width="50" Height="50" CacheMode="BitmapCache">
-                        <Ellipse Fill="DarkGray" Width="50" Height="50"></Ellipse>
-                        <Ellipse Width="49" Height="49" Fill="#C6001F"></Ellipse>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextMinStyle}">笺</TextBlock>
-                    </Grid>
+                <Button Command="{Binding Path=CreateOneCommand}" Margin="20 10 20 0">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Grid>
+                                <sdkControls:DropShadowPanel BlurRadius="8"
+                                    ShadowOpacity="0.7"
+                                    OffsetX="0"
+                                    OffsetY="2"
+                                    Color="Black"
+                                    Margin="20">
+                                    <Ellipse Width="49" Height="49" Fill="#C6001F"/>
+                                </sdkControls:DropShadowPanel>
+                                <TextBlock 
+                                    HorizontalAlignment="Center" 
+                                    VerticalAlignment="Center" 
+                                    Foreground="White" 
+                                    Text="笺"
+                                    Style="{StaticResource TextMinStyle}"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
                 </Button>
             </StackPanel>
         </StackPanel>

@@ -5,6 +5,7 @@
     xmlns:local="using:AppCore.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sdkControls="using:AppCore.SDK.Controls"
     Style="{StaticResource PageNormalStyle}"
     mc:Ignorable="d">
 
@@ -43,27 +44,61 @@
         <Grid Grid.Row="1" Background="Transparent">
             <StackPanel   Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button x:Name="Eidt" Click="Eidt_Click" Margin="20 10 20 0" Style="{StaticResource TextButton}">
-                    <Grid Width="60" Height="60" CacheMode="BitmapCache">
-                        <Ellipse Fill="DarkGray" Width="60" Height="60"></Ellipse>
-                        <Ellipse Width="59" Height="59" Fill="#C6001F"></Ellipse>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextStyle}">改</TextBlock>
-                    </Grid>
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Grid>
+                                <sdkControls:DropShadowPanel BlurRadius="8"
+                                    ShadowOpacity="0.7"
+                                    OffsetX="0"
+                                    OffsetY="2"
+                                    Color="Black"
+                                    Margin="20">
+                                    <Ellipse Width="49" Height="49" Fill="#C6001F"/>
+                                </sdkControls:DropShadowPanel>
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextStyle}">改</TextBlock>
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+                    
                 </Button>
                 
                 <Button x:Name="Save" Click="Save_Click" Margin="20 10 20 0" Style="{StaticResource TextButton}">
-                    <Grid Width="60" Height="60" CacheMode="BitmapCache">
-                        <Ellipse Fill="DarkGray" Width="60" Height="60"></Ellipse>
-                        <Ellipse Width="59" Height="59" Fill="#C6001F"></Ellipse>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextStyle}">存</TextBlock>
-                    </Grid>
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Grid>
+                                <sdkControls:DropShadowPanel BlurRadius="8"
+                                    ShadowOpacity="0.7"
+                                    OffsetX="0"
+                                    OffsetY="2"
+                                    Color="Black"
+                                    Margin="20">
+                                    <Ellipse Width="49" Height="49" Fill="#C6001F"/>
+                                </sdkControls:DropShadowPanel>
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextStyle}">存</TextBlock>
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+                    
+                    
                 </Button>
 
                 <Button x:Name="Delete" Click="Delete_Click" Margin="20 10 20 0" Style="{StaticResource TextButton}">
-                    <Grid Width="60" Height="60" CacheMode="BitmapCache">
-                        <Ellipse Fill="DarkGray" Width="60" Height="60"></Ellipse>
-                        <Ellipse Width="59" Height="59" Fill="#C6001F"></Ellipse>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextStyle}">删</TextBlock>
-                    </Grid>
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Grid>
+                                <sdkControls:DropShadowPanel BlurRadius="8"
+                                    ShadowOpacity="0.7"
+                                    OffsetX="0"
+                                    OffsetY="2"
+                                    Color="Black"
+                                    Margin="20">
+                                    <Ellipse Width="49" Height="49" Fill="#C6001F"/>
+                                </sdkControls:DropShadowPanel>
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextStyle}">删</TextBlock>
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+                    
                 </Button>
             </StackPanel>
         </Grid>

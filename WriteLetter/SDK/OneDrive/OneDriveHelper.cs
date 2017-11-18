@@ -16,12 +16,18 @@ using Windows.UI.Xaml;
 using System.IO;
 using WriteLetter;
 using Windows.Storage;
+using AppCore.SDK.Controls;
 
 namespace AppCore.SDK.OneDrive
 {
     public class OneDriveHelper
     {
-
+        public enum CloudSyncState
+        {
+            Offline,
+            Active,
+            Unavailable,
+        }
         private static object syncRoot = new object();
 
         private static OneDriveHelper instance;
@@ -43,6 +49,11 @@ namespace AppCore.SDK.OneDrive
         public event EventHandler OneDriveStateChanged;
 
         #region OneDrive
+        public CloudSyncState GetState()
+        {
+            return CloudSyncState.Active;
+        }
+
         public IOneDriveClient OneDriveClient { get; set; }
 
         public IAuthenticationProvider AuthProvider { get; set; }
@@ -65,7 +76,7 @@ namespace AppCore.SDK.OneDrive
         }
         public async void InitializeClient(ClientType clientType)
         {
-            var app = (App)Application.Current;
+            //var app = (App)Application.Current;
             if (OneDriveClient == null)
             {
                 Task authTask;
@@ -156,7 +167,7 @@ namespace AppCore.SDK.OneDrive
               .DeleteAsync();
         }
 
-        private async Task<Stream> DownloadItemById(string itemId)
+        public async Task<Stream> DownloadItemById(string itemId)
         {
             var stream = await OneDriveClient
                               .Drive
@@ -164,6 +175,27 @@ namespace AppCore.SDK.OneDrive
                               .Content
                               .Request()
                               .GetAsync();
+            return stream;
+        }
+
+
+        public async Task<Stream> DownloadItemByPath(string itemPath)
+        {
+            Stream stream = null;
+            try
+            {
+                stream = await OneDriveClient
+                            .Drive
+                            .Root
+                            .ItemWithPath(itemPath)
+                            .Content
+                            .Request()
+                            .GetAsync();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);                
+            }            
             return stream;
         }
 
@@ -228,18 +260,30 @@ namespace AppCore.SDK.OneDrive
             }
             return true;
         }
-
-        public async Task<Stream> DownLoadFile(string id)
-        {
-            return await DownloadItemById(id);
-        }
-
         public async Task<bool> ReadFile()
         {
             throw new NotImplementedException();
             return true;
         }
 
+        #endregion
+
+        #region Controls
+        private CloudSyncControl cloudSyncControl;
+        private object cloudSyncControlRoot = new object();
+        public CloudSyncControl GetCloudSyncControl()
+        {
+            if (cloudSyncControl == null)
+                lock (cloudSyncControlRoot)
+                {
+                    if (cloudSyncControl == null)
+                    {
+                        cloudSyncControl = new CloudSyncControl();
+                    }
+                
+                }
+            return cloudSyncControl;
+        }
         #endregion
     }
 
