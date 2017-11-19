@@ -117,15 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="IDS_APP_NAME" xml:space="preserve">
-    <value>see your letter as your face</value>
-    <comment>app name</comment>
+  <data name="String1" xml:space="preserve">
+    <value>dsad</value>
   </data>
-  <data name="IDS_BACK_EXIT_WARNING" xml:space="preserve">
-    <value>press back button again to exit.</value>
+  <data name="String2" xml:space="preserve">
+    <value>dasdadasd</value>
   </data>
-  <data name="IDS_TEST_STRING" xml:space="preserve">
-    <value>test string</value>
-    <comment>a test string</comment>
+  <data name="String3" xml:space="preserve">
+    <value>dsadasdasd</value>
+  </data>
+  <data name="String4" xml:space="preserve">
+    <value>dasdada</value>
   </data>
 </root>

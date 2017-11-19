@@ -9,9 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WriteLetter</RootNamespace>
     <AssemblyName>WriteLetter</AssemblyName>
-    <DefaultLanguage>zh-CN</DefaultLanguage>
+    <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
+    <TargetPlatformVersion>10.0.15063.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
@@ -98,9 +98,14 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SDK\Icons\ic_backup_black_24dp.png" />
+    <Content Include="Strings\StringProvider.Helper.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>StringProvider.Helper.cs</LastGenOutput>
+    </Content>
     <Content Include="Strings\StringProvider.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>StringProvider.cs</LastGenOutput>
+      <CustomToolNamespace>AppCore.SDK</CustomToolNamespace>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +121,22 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SDK\Controls\Animations\AnimationBase.cs" />
+    <Compile Include="SDK\Controls\Animations\AnimationCollection.cs" />
+    <Compile Include="SDK\Controls\Animations\ApiInformationHelper.cs" />
+    <Compile Include="SDK\Controls\Animations\ExpressionKeyFrame.cs" />
+    <Compile Include="SDK\Controls\Animations\Implicit.cs" />
+    <Compile Include="SDK\Controls\Animations\KeyFrame.cs" />
+    <Compile Include="SDK\Controls\Animations\KeyFrameCollection.cs" />
+    <Compile Include="SDK\Controls\Animations\OpacityAnimation.cs" />
+    <Compile Include="SDK\Controls\Animations\ScalarAnimation.cs" />
+    <Compile Include="SDK\Controls\Animations\ScalarKeyFrame.cs" />
+    <Compile Include="SDK\Controls\Animations\TranslationAnimation.cs" />
+    <Compile Include="SDK\Controls\Animations\TypedAnimationBase.cs" />
+    <Compile Include="SDK\Controls\Animations\TypedKeyFrame.cs" />
+    <Compile Include="SDK\Controls\Animations\Vector3Animation.cs" />
+    <Compile Include="SDK\Controls\Animations\Vector3KeyFrame.cs" />
+    <Compile Include="SDK\Controls\Animations\VisualEx.cs" />
     <Compile Include="SDK\Controls\CloudSyncControl.xaml.cs">
       <DependentUpon>CloudSyncControl.xaml</DependentUpon>
     </Compile>
@@ -137,6 +158,7 @@
     </Compile>
     <Compile Include="SDK\Helper\DesignTimeHelpers.cs" />
     <Compile Include="SDK\Helper\ImageCache.cs" />
+    <Compile Include="SDK\Helper\StringLoader.cs" />
     <Compile Include="SDK\Models\CacheBase.cs" />
     <Compile Include="SDK\Models\InMemoryStorageItem.cs" />
     <Compile Include="SDK\Models\InMenoryStorage.cs" />
@@ -148,6 +170,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>StringProvider.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Strings\StringProvider.Helper.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringProvider.Helper.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\CloudSyncControlViewModel.cs" />
     <Compile Include="ViewModels\DataViewModel.cs" />
@@ -182,6 +209,7 @@
     </PRIResource>
     <PRIResource Include="Styles\Colors.resw" />
     <Compile Include="SDK\Controls\ImageEx\ImageExBase.Source.cs" />
+    <PRIResource Include="Strings\Resources.resw" />
     <None Include="WriteLetter_StoreKey.pfx" />
     <None Include="WriteLetter_TemporaryKey.pfx" />
   </ItemGroup>
@@ -273,7 +301,7 @@
     <SDKReference Include="Microsoft.VCLibs, Version=14.0">
       <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
     </SDKReference>
-    <SDKReference Include="WindowsMobile, Version=10.0.14393.0">
+    <SDKReference Include="WindowsMobile, Version=10.0.15063.0">
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>

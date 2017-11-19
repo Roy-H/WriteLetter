@@ -121,6 +121,9 @@
     <value>见字如晤</value>
     <comment>app name</comment>
   </data>
+  <data name="IDS_BACK_EXIT_WARNING" xml:space="preserve">
+    <value>再按一次返回键退出程序。</value>
+  </data>
   <data name="IDS_TEST" xml:space="preserve">
     <value>测试</value>
     <comment>a test string</comment>

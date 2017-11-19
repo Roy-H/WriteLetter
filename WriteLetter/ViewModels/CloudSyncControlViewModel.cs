@@ -1,4 +1,6 @@
-﻿using AppCore.SDK.Controls;
+﻿using AppCore;
+using AppCore.SDK.Controls;
+using AppCore.SDK.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -75,7 +77,7 @@ namespace WriteLetter.ViewModels
                     },
                     ExecuteCallback = delegate
                     {
-
+                        var a = Strings.IDS_APP_NAME;
                     }
                 };
             }
