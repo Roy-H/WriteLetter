@@ -47,6 +47,22 @@ namespace WriteLetter.ViewModels
         {
             yearViewModels.Insert(0,year);
             OnPropertyChanged("YearViewModels");
-        }        
+        }
+
+        public int ItemsCount
+        {
+            get
+            {
+                int count = 0;
+                foreach (var year in yearViewModels)
+                {
+                    foreach (var month in year.MonthViewModels)
+                    {
+                       count += month.Letters.Count();
+                    }
+                }
+                return count;
+            }
+        }
     }
 }

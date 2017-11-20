@@ -18,6 +18,7 @@ using AppCore.Helper;
 using WriteLetter.ViewModels;
 using Windows.Storage.Pickers;
 using AppCore.SDK.OneDrive;
+using AppCore.SDK.Controls;
 
 namespace WriteLetter.Views
 {
@@ -25,7 +26,7 @@ namespace WriteLetter.Views
     public sealed partial class YearView : Page
     {
         private int adCount;
-
+        private Grid cloudSyncControlPlaceHolder => CloudSyncControlPlaceHolder;
         public DataViewModel Data
         {
             get
@@ -40,19 +41,25 @@ namespace WriteLetter.Views
 
         public YearView()
         {
+            this.Loaded += YearView_Loaded;
+            this.Unloaded += YearView_Unloaded;
             this.InitializeComponent();
             Initialize();
             
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
             //NavigationCacheMode = NavigationCacheMode.Enabled;
         }
+
+        private void YearView_Unloaded(object sender, RoutedEventArgs e)
+        {
+            RemoveCloudSyncControl();
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             //if(e.Parameter != null)
         }
-
-        
 
         private void Initialize()
         {            
@@ -81,7 +88,17 @@ namespace WriteLetter.Views
             if (Data.YearViewModels.Count == 0)
                 Data.AddYear(new YearViewModel(DateTime.Now));
             this.DataContext = Data;
+            
         }
+
+        private void YearView_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            AddCloudSyncControl();
+        }
+
+        
+
         private void OnErrorOccurred(object sender, Microsoft.Advertising.WinRT.UI.AdErrorEventArgs e)
         {
             NotifyUser($"An error occurred. {e.ErrorCode}: {e.ErrorMessage}", NotifyType.ErrorMessage);
@@ -148,6 +165,24 @@ namespace WriteLetter.Views
         {
 
         }
+
+        #region Cloud Sync Control
+        private void AddCloudSyncControl()
+        {
+            cloudSyncControlPlaceHolder.Children.Clear();
+            var control = OneDriveHelper.Instance.GetCloudSyncControl();
+            if (control == null)
+                throw new Exception("cannot find cloudSyncControl");
+            control.DataContext = new CloudSyncControlViewModel();
+            cloudSyncControlPlaceHolder.Children.Add(control);
+        }
+
+        private void RemoveCloudSyncControl()
+        {
+            cloudSyncControlPlaceHolder.Children.Clear();
+        }
+        #endregion
+
     }
     public enum NotifyType
     {

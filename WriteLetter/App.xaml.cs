@@ -21,6 +21,7 @@ using Windows.UI.ViewManagement;
 using System.Threading.Tasks;
 using Windows.UI.Notifications;
 using AppCore.SDK.Views;
+using AppCore;
 
 namespace WriteLetter
 {
@@ -87,7 +88,7 @@ namespace WriteLetter
                     statusBar.ShowAsync();
                     statusBar.ForegroundColor = Colors.White;
                     statusBar.BackgroundOpacity = 0.9;
-                    statusBar.ProgressIndicator.Text = "再按一次返回键退出程序。";
+                    statusBar.ProgressIndicator.Text = Strings.IDS_BACK_EXIT_WARNING;
                     statusBar.ProgressIndicator.ShowAsync();
 
                     //Windows.Data.Xml.Dom.XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText01);

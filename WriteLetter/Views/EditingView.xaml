@@ -2,7 +2,8 @@
     x:Class="WriteLetter.Views.EditingView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:AppCore.Views"
+    xmlns:local="using:WriteLetter.Views"
+    xmlns:sdkControls ="using:AppCore.SDK.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -34,11 +35,22 @@
         </StackPanel>
         <StackPanel HorizontalAlignment="Right" Grid.Row="2">
             <Button Style="{StaticResource TextButton}" x:Name="Finished" Click="Finished_Click" Background="Transparent">
-                <Grid Width="50" Height="50" CacheMode="BitmapCache">
-                    <Ellipse Fill="DarkGray" StrokeDashOffset="0.1" Width="50" Height="50"></Ellipse>
-                    <Ellipse Width="47" Height="47" Fill="#C6001F"></Ellipse>
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextMinStyle}">结</TextBlock>
-                </Grid>
+                <Button.Template>
+                    <ControlTemplate>
+                        <Grid>
+                            <sdkControls:DropShadowPanel BlurRadius="8"
+                                    ShadowOpacity="0.7"
+                                    OffsetX="0"
+                                    OffsetY="2"
+                                    Color="Black"
+                                    Margin="20">
+                                <Ellipse Width="49" Height="49" Fill="#C6001F"/>
+                            </sdkControls:DropShadowPanel>
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextMinStyle}">结</TextBlock>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+                
             </Button>
         </StackPanel>
     </Grid>

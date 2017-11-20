@@ -37,6 +37,51 @@ namespace AppCore.Helper
             
         }
 
+        static public async Task<object> LoadFromOneDrive(Type type,string fileName)
+        {
+            Stream stream = null;
+            try
+            {
+                stream = await AppCore.SDK.OneDrive.OneDriveHelper.Instance.DownloadItemByPath(fileName);
+                DataContractJsonSerializer ser = new DataContractJsonSerializer(type);
+                if (stream == null)
+                    return null;
+                return ser.ReadObject(stream);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            return null;
+        }
+
+        static public async Task<bool> UpLoadToOneDrive(Type type, object obj, string fileName)
+        {
+            StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+            try
+            {
+                if (storageFolder == null)
+                    return false;
+                var ser = new DataContractJsonSerializer(type);
+                MemoryStream stream = new MemoryStream();
+                ser.WriteObject(stream, obj);
+
+                string szJson = Encoding.UTF8.GetString(stream.ToArray());
+                
+                StorageFile tempFile = await storageFolder.TryGetItemAsync(fileName) as StorageFile;
+                if(tempFile == null)
+                    tempFile = await storageFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+                await FileIO.WriteTextAsync(tempFile, szJson);
+                await AppCore.SDK.OneDrive.OneDriveHelper.Instance.UpLoadFile(tempFile);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return false;
+            }
+            return true;
+        }
+
         static public async Task Save(Type type,object obj, string fileName)
         {
             
