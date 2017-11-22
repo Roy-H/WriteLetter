@@ -47,7 +47,7 @@ namespace WriteLetter.Views
             Initialize();
             
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
-            //NavigationCacheMode = NavigationCacheMode.Enabled;
+            NavigationCacheMode = NavigationCacheMode.Enabled;
         }
 
         private void YearView_Unloaded(object sender, RoutedEventArgs e)

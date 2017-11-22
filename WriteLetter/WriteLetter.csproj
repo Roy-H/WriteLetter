@@ -157,6 +157,7 @@
       <DependentUpon>OneDriveWaitSign.xaml</DependentUpon>
     </Compile>
     <Compile Include="SDK\Helper\DesignTimeHelpers.cs" />
+    <Compile Include="SDK\Helper\FolderHelper.cs" />
     <Compile Include="SDK\Helper\ImageCache.cs" />
     <Compile Include="SDK\Helper\StringLoader.cs" />
     <Compile Include="SDK\Models\CacheBase.cs" />
