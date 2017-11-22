@@ -3,10 +3,12 @@ using AppCore.SDK.Controls;
 using AppCore.SDK.Helper;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.UI.Xaml.Controls;
 
 namespace WriteLetter.ViewModels
 {
@@ -60,11 +62,12 @@ namespace WriteLetter.ViewModels
                     },
                     ExecuteCallback = delegate
                     {
-
+                        
                     }
                 };
             }
         }
+        
         public ICommand DownLoadItemCommand
         {
             get

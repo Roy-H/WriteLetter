@@ -116,6 +116,7 @@
     <Compile Include="Helper\DataManager.cs" />
     <Compile Include="Helper\DataUpdateHelper.cs" />
     <Compile Include="Helper\DateToChineseHelper.cs" />
+    <Compile Include="Helper\DialogManager.cs" />
     <Compile Include="Helper\XMLHelper.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>

@@ -124,6 +124,24 @@
   <data name="IDS_BACK_EXIT_WARNING" xml:space="preserve">
     <value>press back button again to exit.</value>
   </data>
+  <data name="IDS_CANCEL" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="IDS_DELETE_CONFIRM_TITLE" xml:space="preserve">
+    <value>To delete</value>
+  </data>
+  <data name="IDS_DELETE_WARNING" xml:space="preserve">
+    <value>Make sure you want to delete this item?</value>
+  </data>
+  <data name="IDS_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="IDS_SAVE_ERROR" xml:space="preserve">
+    <value>There are some errors when save your file.</value>
+  </data>
+  <data name="IDS_SAVE_SUCCESSFULLY" xml:space="preserve">
+    <value>Save successfully.</value>
+  </data>
   <data name="IDS_TEST_STRING" xml:space="preserve">
     <value>test string</value>
     <comment>a test string</comment>

@@ -123,6 +123,14 @@ namespace AppCore.Helper
             }
         }
 
+        static public async Task SaveTxtFile(StorageFile file, string text)
+        {
+            if (file != null)
+            {
+                await FileIO.WriteTextAsync(file, text);
+            }                
+        }
+
         private static async void TransferData()
         {
             // Initialize the in-memory stream where data will be stored.
