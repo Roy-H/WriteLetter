@@ -3,12 +3,14 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Collections" #>
 <#@ include file="StringProvider.Helper.tt" #>
 <#@ output extension=".cs" #>
 
 <#
     //this.StringDefinitions = AppCore.SDK.Helper.StringLoader.Parse();
 	var c = LoadStringResourceItems();
+	AsyncStrings();
     WriteLine("// *******************************************");
     WriteLine("// *** Auto-generated code. Do not modify! ***");
     WriteLine("// *******************************************");
