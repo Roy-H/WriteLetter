@@ -55,7 +55,8 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="0" Source="ms-appx:///Assets/img/left_small.png" Stretch="None"></Image>
-            <ads:AdControl                
+            <ads:AdControl  
+                Visibility="Collapsed"
                 Grid.Column="1"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Bottom"
