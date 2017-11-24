@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 
-namespace WriteLetter.SDK.Helper
+namespace AppCore.SDK.Helper
 {
-    public sealed class FolderHelper
+    public class FolderHelper
     {
         private static FolderHelper instance;
         private static object asyncRoot = new object();
@@ -29,9 +29,11 @@ namespace WriteLetter.SDK.Helper
 
         public async Task<StorageFolder> PickupFolder(PickerLocationId id = PickerLocationId.DocumentsLibrary)
         {
-            var folderPicker = new FolderPicker() { SuggestedStartLocation = id };
-            var picker = new FileOpenPicker { SuggestedStartLocation = PickerLocationId.DocumentsLibrary };
-            picker.FileTypeFilter.Add("*");
+            
+            var folderPicker = new FolderPicker() { SuggestedStartLocation = id, ViewMode = PickerViewMode.List };
+            //var picker = new FileOpenPicker { SuggestedStartLocation = PickerLocationId.DocumentsLibrary };
+            //picker.FileTypeFilter.Add("*");
+            folderPicker.FileTypeFilter.Add("*");
             var folder = await folderPicker.PickSingleFolderAsync();
             return folder;
             

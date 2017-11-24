@@ -15,6 +15,10 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using AppCore.Helper;
 using WriteLetter.ViewModels;
+using AppCore.SDK.Helper;
+using AppCore;
+using System.Diagnostics;
+using System.Text;
 
 namespace WriteLetter.Views
 {
@@ -60,31 +64,62 @@ namespace WriteLetter.Views
             frame.Navigate(typeof(EditingView), ViewModel);
         }
 
-        private void Save_Click(object sender, RoutedEventArgs e)
+        private async void Save_Click(object sender, RoutedEventArgs e)
         {
+            bool isOk = true;
+            try
+            {
+                var folder = await FolderHelper.Instance.PickupFolder();
+                if (folder == null)
+                    return;
+                string stringToSave = ""+ ViewModel.Title+"\r\n"+ @"    " + ViewModel.Content+ "\r\n"+@"        "+ViewModel.TimeText;               
+                //string fileName = folder.Path.TrimEnd('\\') + @"\" + ViewModel.Title + ViewModel.TimeText+".txt";
+                var fileName = ViewModel.Title +"-"+ ViewModel.TimeText + ".txt";
+                var file = await folder.CreateFileAsync(fileName, Windows.Storage.CreationCollisionOption.GenerateUniqueName);               
+                await DataHelper.SaveTxtFile(file, stringToSave);
 
+            }
+            catch (Exception ex)
+            {
+                isOk = false;
+                DialogManager.Instance.ShowConfirmDialog(string.Empty, Strings.IDS_SAVE_ERROR);
+                Debug.WriteLine(ex.Message);
+            }
+            if(isOk)
+                DialogManager.Instance.ShowConfirmDialog(string.Empty, Strings.IDS_SAVE_SUCCESSFULLY);
         }
 
-        //private async void ShowMessageDialog()
-        //{
-            
-           
-        //    await msgDialog.ShowAsync();
-        //}
+       
 
-        private async void Delete_Click(object sender, RoutedEventArgs e)
+        private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            var msgDialog = new Windows.UI.Popups.MessageDialog("确定删除这封信吗？") { Title = "删除确认" };
-            msgDialog.Commands.Add(new Windows.UI.Popups.UICommand("确定",async uiCommand => {
-                var frame = Window.Current.Content as Frame;                
+            var command1 = new Windows.UI.Popups.UICommand(Strings.IDS_OK, async uiCommand => {
+                var frame = Window.Current.Content as Frame;
                 //var month = DataManager.GetMonthViewModelByTime(ViewModel.Time);
                 frame.GoBack();
                 await DataManager.Instance.DeleteLetterAndSave(ViewModel);
                 DataManager.Instance.Data.OnPropertyChanged("YearViewModels");
 
-            }));
-            msgDialog.Commands.Add(new Windows.UI.Popups.UICommand("取消", uiCommand => { }));
-            await msgDialog.ShowAsync();
+            });
+            var command2 = new Windows.UI.Popups.UICommand(Strings.IDS_CANCEL, uiCommand => { });
+            DialogManager.Instance.ShowInfoDialog(
+                Strings.IDS_DELETE_CONFIRM_TITLE,
+                Strings.IDS_DELETE_WARNING,
+                command1,
+                command2
+                );
+
+            //var msgDialog = new Windows.UI.Popups.MessageDialog(Strings.IDS_DELETE_WARNING) { Title = Strings.IDS_DELETE_CONFIRM_TITLE };
+            //msgDialog.Commands.Add(new Windows.UI.Popups.UICommand(Strings.IDS_OK,async uiCommand => {
+            //    var frame = Window.Current.Content as Frame;                
+            //    //var month = DataManager.GetMonthViewModelByTime(ViewModel.Time);
+            //    frame.GoBack();
+            //    await DataManager.Instance.DeleteLetterAndSave(ViewModel);
+            //    DataManager.Instance.Data.OnPropertyChanged("YearViewModels");
+
+            //}));
+            //msgDialog.Commands.Add(new Windows.UI.Popups.UICommand(Strings.IDS_CANCEL, uiCommand => { }));
+            //await msgDialog.ShowAsync();
         }
     }
 }
