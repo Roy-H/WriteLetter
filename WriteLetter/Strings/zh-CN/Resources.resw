@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -142,8 +142,7 @@
   <data name="IDS_SAVE_SUCCESSFULLY" xml:space="preserve">
     <value>保存成功。</value>
   </data>
-  <data name="IDS_TEST" xml:space="preserve">
-    <value>测试</value>
-    <comment>a test string</comment>
+  <data name="IDS_ADDED" xml:space="preserve">
+    <value>添加</value>
   </data>
 </root>

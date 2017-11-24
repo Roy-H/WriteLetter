@@ -119,14 +119,21 @@
   </resheader>
   <data name="String1" xml:space="preserve">
     <value>dsad</value>
+    <comment>dsfs </comment>
   </data>
   <data name="String2" xml:space="preserve">
     <value>dasdadasd</value>
+    <comment>fsdf </comment>
   </data>
   <data name="String3" xml:space="preserve">
     <value>dsadasdasd</value>
+    <comment>dsfsdf</comment>
   </data>
   <data name="String4" xml:space="preserve">
     <value>dasdada</value>
+    <comment>fdsfsd</comment>
+  </data>
+  <data name="String5" xml:space="preserve">
+    <value>sdasd</value>
   </data>
 </root>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppCore.SDK.Helper;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -29,7 +30,8 @@ namespace AppCore.SDK.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-           Element.Visibility = Element.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
+            //Element.Visibility = Element.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
+            StringLoader.Instance.AsyncStrings();
         }
     }
 }

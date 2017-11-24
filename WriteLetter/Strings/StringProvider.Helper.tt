@@ -16,14 +16,50 @@
 <#+
 	string StringDefinitionsFileName = @"Resources.resw";
 	string LanguagePath = @"/en-US/";
-	public IEnumerable<ResourceItem> LoadStringResourceItems()
+	string[] SupportedLanguage = new string[]{@"/en-US/",@"/zh-CN/"};
+
+	
+	public IEnumerable<ResourceItem> LoadStringResourceItems(string language = @"/en-US/")
     {
         var templateDir = Path.GetDirectoryName(Host.TemplateFile);
-		var realFileName = Path.Combine(templateDir+LanguagePath, this.StringDefinitionsFileName);
+		var realFileName = Path.Combine(templateDir+language, this.StringDefinitionsFileName);
 		var reswFileContents = File.ReadAllText(realFileName);
         var target = new ResourceParser(reswFileContents);
         var actual = target.Parse();
         return actual;
+    }
+
+	public void AsyncStrings()
+    {
+        var items = LoadStringResourceItems();
+        var dict = new Dictionary<string, ResourceItem>();
+        foreach (var item in items)
+        {
+            if (!dict.ContainsKey(item.Name))
+            {
+                dict.Add(item.Name,item);
+            }
+        }
+
+        for (int i = 0; i < SupportedLanguage.Length; i++)
+        {
+            var allStrings = LoadStringResourceItems(language: SupportedLanguage[i]);
+			var rest = dict.Where(stuff => { return !allStrings.Any(str => str.Name == stuff.Key); }).Select(stu => stu.Value).ToList();
+            //var rest = allStrings.Where(stuff => { return !dict.ContainsKey(stuff.Name); }).ToList();
+			if (rest.Count == 0)
+                continue;
+            Append(rest, SupportedLanguage[i]);
+        }
+    }
+
+	public void Append(List<ResourceItem> items,string language)
+    {
+		var templateDir = Path.GetDirectoryName(Host.TemplateFile);
+		var realFileName = Path.Combine(templateDir+language, this.StringDefinitionsFileName);
+        var reswFileContents = File.ReadAllText(realFileName);
+        var target = new ResourceAppend(reswFileContents,realFileName);
+        target.Append(items);
+		
     }
 
 	public class ResourceItem
@@ -33,7 +69,37 @@
         public string Comment { get; set; }
     }
 
+	public class ResourceAppend
+    {
+        public ResourceAppend(string reswFileContents,string fileName)
+        {
+            ReswFileContents = reswFileContents;
+			FileName = fileName;
+        }
 
+        public string ReswFileContents { get; set; }
+		public string FileName { get; set; }
+
+        public void Append(IEnumerable<ResourceItem> items)
+        {
+            var doc = XDocument.Parse(ReswFileContents);
+            
+            var list = new List<ResourceItem>();
+
+            
+            foreach (var item in items)
+            {
+                var e = new XElement("data");
+                e.SetAttributeValue("name", item.Name);
+                e.SetAttributeValue("xml:space","preserve");
+                e.Add(new XElement("value") { Value = item.Value });
+                e.Add(new XElement("comment") { Value = item.Comment==null?"en-US": item.Comment });               
+                doc.Root.Add(e);
+            }           
+            var writter = File.CreateText(FileName);;
+            doc.Save(writter);
+        }
+    }
     
     public class ResourceParser
     {
