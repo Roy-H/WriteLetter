@@ -52,7 +52,7 @@ namespace WriteLetter
                 {
                     
                 }
-                rootFrame.Navigate(typeof(ControlTest));
+                rootFrame.Navigate(typeof(YearView));
                 Window.Current.Content = rootFrame;
             }
 
@@ -60,7 +60,7 @@ namespace WriteLetter
             {
                 if (rootFrame.Content == null)
                 {                    
-                    rootFrame.Navigate(typeof(ControlTest), e.Arguments);
+                    rootFrame.Navigate(typeof(YearView), e.Arguments);
                 }                
                 Window.Current.Activate();
             }

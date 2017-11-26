@@ -1,4 +1,5 @@
 ﻿using AppCore;
+using AppCore.Helper;
 using AppCore.SDK.Controls;
 using AppCore.SDK.Helper;
 using System;
@@ -62,7 +63,8 @@ namespace WriteLetter.ViewModels
                     },
                     ExecuteCallback = delegate
                     {
-                        
+                        //DialogManager.Instance.ShowInfoDialog()
+
                     }
                 };
             }
