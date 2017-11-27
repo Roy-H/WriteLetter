@@ -51,6 +51,7 @@ namespace WriteLetter.ViewModels
                 };
             }
         }
+
         public ICommand UpLoadItemCommand
         {
             get
