@@ -151,6 +151,8 @@
     <Compile Include="SDK\Controls\ImageEx\ImageExBase.Placeholder.cs" />
     <Compile Include="SDK\Controls\ImageEx\ImageExFailedEventArgs.cs" />
     <Compile Include="SDK\Controls\ImageEx\ImageExOpenedEventArgs.cs" />
+    <Compile Include="SDK\Controls\Loading\Loading.cs" />
+    <Compile Include="SDK\Controls\Loading\Loading.Properties.cs" />
     <Compile Include="SDK\Controls\OneDriveStatusSign.xaml.cs">
       <DependentUpon>OneDriveStatusSign.xaml</DependentUpon>
     </Compile>
@@ -247,6 +249,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="SDK\Controls\ExtendedSplashScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SDK\Controls\Loading\Loading.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

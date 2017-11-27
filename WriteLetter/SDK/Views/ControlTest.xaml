@@ -58,5 +58,13 @@
                 </Border>
             </Canvas>
         </StackPanel>
+        <controls:Loading
+            x:Name="LoadingControl" Width="500" Height="200" HorizontalContentAlignment="Center" 
+                          VerticalContentAlignment="Center"
+                          Background="Red" Opacity="0.7">
+            <ContentControl x:Name="LoadingContentControl">
+                <ProgressRing/>
+            </ContentControl>
+        </controls:Loading>
     </Grid>
 </Page>
