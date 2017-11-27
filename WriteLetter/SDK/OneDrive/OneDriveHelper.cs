@@ -74,7 +74,7 @@ namespace AppCore.SDK.OneDrive
             Consumer,
             ConsumerUwp
         }
-        public async void InitializeClient(ClientType clientType)
+        public async Task InitializeClient(ClientType clientType)
         {
             //var app = (App)Application.Current;
             if (OneDriveClient == null)

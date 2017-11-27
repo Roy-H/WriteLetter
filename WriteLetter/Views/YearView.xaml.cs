@@ -93,8 +93,7 @@ namespace WriteLetter.Views
 
         private void YearView_Loaded(object sender, RoutedEventArgs e)
         {
-
-            //AddCloudSyncControl();
+            AddCloudSyncControl();
         }
 
         

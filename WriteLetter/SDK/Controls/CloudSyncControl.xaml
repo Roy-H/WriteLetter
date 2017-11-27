@@ -5,24 +5,92 @@
     xmlns:local="using:AppCore.SDK.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:animations="using:AppCore.SDK.Controls.Animations"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
 
-    <Grid>
+    <Grid MaxWidth="60" MaxHeight="200" Margin="20">
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Command="{Binding CloudButtonPressCommand}">
-            <TextBlock>Could</TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Canvas MinHeight="90" Grid.Row="0">
+            <StackPanel x:Name="subItems">
+                <Button Command="{Binding UpLoadItemCommand}">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Grid>
+                                <local:DropShadowPanel BlurRadius="8"
+                                    ShadowOpacity="0.7"
+                                    OffsetX="0"
+                                    OffsetY="2"
+                                    Color="Black"
+                                    Margin="5">
+                                    <Ellipse Width="35" Height="35" Fill="#C6001F"/>
+                                </local:DropShadowPanel>
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextMinStyle}">传</TextBlock>
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button HorizontalAlignment="Right"  Command="{Binding DownLoadItemCommand}">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Grid>
+                                <local:DropShadowPanel BlurRadius="8"
+                                    ShadowOpacity="0.7"
+                                    OffsetX="0"
+                                    OffsetY="2"
+                                    Color="Black"
+                                    Margin="5">
+                                    <Ellipse Width="35" Height="35" Fill="#C6001F"/>
+                                </local:DropShadowPanel>
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextMinStyle}">载</TextBlock>
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+           
+            <animations:Implicit.ShowAnimations>
+                <animations:TranslationAnimation Duration="0:0:1" From="0, -50, 0" To="0" ></animations:TranslationAnimation>
+                <animations:OpacityAnimation Duration="0:0:1" From="0" To="1.0"></animations:OpacityAnimation>
+            </animations:Implicit.ShowAnimations>
+
+            <animations:Implicit.HideAnimations>
+                <animations:ScalarAnimation Target="Opacity" Duration="0:0:1" To="0.0"></animations:ScalarAnimation>
+                <animations:ScalarAnimation Target="Translation.Y" Duration="0:0:1" To="-50">
+                    <animations:ScalarKeyFrame Key="0.1" Value="30"></animations:ScalarKeyFrame>
+                    <animations:ScalarKeyFrame Key="0.5" Value="0.0"></animations:ScalarKeyFrame>
+                </animations:ScalarAnimation>
+            </animations:Implicit.HideAnimations>
+            </StackPanel>
+        </Canvas>
+        
+        <Button HorizontalAlignment="Right" Grid.Row="1" Click="Button_Click" Command="{Binding CloudButtonPressCommand}">
+            <Button.Template>
+                <ControlTemplate>
+                    <Grid>
+                        <local:DropShadowPanel BlurRadius="8"
+                                    ShadowOpacity="0.7"
+                                    OffsetX="0"
+                                    OffsetY="2"
+                                    Color="Black"
+                                    Margin="10">
+                            <Ellipse Width="49" Height="49" Fill="#C6001F"/>
+                        </local:DropShadowPanel>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextStyle}">云</TextBlock>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
         </Button>
-        <Button Grid.Row="1" Command="{Binding UpLoadItemCommand}">
-            <TextBlock Text="up"/>
-        </Button>
-        <Button Grid.Row="2" Command="{Binding DownLoadItemCommand}">
-            <TextBlock Text="Down"/>
-        </Button>
+
+        
+        
     </Grid>
 </UserControl>

@@ -30,8 +30,8 @@ namespace AppCore.SDK.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //Element.Visibility = Element.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
-            StringLoader.Instance.AsyncStrings();
+            Element.Visibility = Element.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
+            //StringLoader.Instance.AsyncStrings();
         }
     }
 }

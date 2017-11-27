@@ -91,7 +91,7 @@
             {
                 var e = new XElement("data");
                 e.SetAttributeValue("name", item.Name);
-                e.SetAttributeValue("xml:space","preserve");
+                //e.SetAttributeValue("xml:space","preserve");
                 e.Add(new XElement("value") { Value = item.Value });
                 e.Add(new XElement("comment") { Value = item.Comment==null?"en-US": item.Comment });               
                 doc.Root.Add(e);

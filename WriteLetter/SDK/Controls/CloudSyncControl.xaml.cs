@@ -29,6 +29,7 @@ namespace AppCore.SDK.Controls
 
         private void CloudSyncControl_Loaded(object sender, RoutedEventArgs e)
         {
+            SubItems.Visibility = Visibility.Collapsed;
             var state = OneDriveHelper.Instance.GetState();
             switch (state)
             {
@@ -55,6 +56,13 @@ namespace AppCore.SDK.Controls
         public static readonly DependencyProperty IsButtonVisibleProperty =
             DependencyProperty.Register("IsButtonVisible", typeof(bool), typeof(CloudSyncControl), new PropertyMetadata(false));
 
+
+        private StackPanel SubItems => subItems;
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            await OneDriveHelper.Instance.InitializeClient(OneDriveHelper.ClientType.ConsumerUwp);
+            SubItems.Visibility = SubItems.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
+        }
     }
 
     public interface ICloudSyncControlViewModel

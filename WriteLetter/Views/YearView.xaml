@@ -47,14 +47,16 @@
                 </DataTemplate>
             </FlipView.ItemTemplate>
         </FlipView>
-        <Grid x:Name="CloudSyncControlPlaceHolder"></Grid>
+        
         <Grid Grid.Row="1" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="0" Source="ms-appx:///Assets/img/left_small.png" Stretch="None"></Image>
+            <Grid Grid.Column="1" x:Name="CloudSyncControlPlaceHolder"></Grid>
+            
             <!--<ads:AdControl  
                 Visibility="Collapsed"
                 Grid.Column="1"
