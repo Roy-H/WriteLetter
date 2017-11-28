@@ -4,5 +4,6 @@
     xmlns:local="using:WriteLetter.SDK.Themes">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/SDK/Controls/DropShadowPanel/DropShadowPanel.xaml"/>
+        <ResourceDictionary Source="/SDK/Controls/Loading/Loading.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
