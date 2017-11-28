@@ -7,9 +7,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:AppCore.SDK.Controls"
     xmlns:animations="using:AppCore.SDK.Controls.Animations"
+    xmlns:sdkhelper="using:AppCore.SDK.Helper"
     mc:Ignorable="d">
     <Page.Resources>
         <ResourceDictionary>
+            <sdkhelper:WaitProgressHelper x:Name="WaitProgressHelper"/>
             <DataTemplate x:Key="WaitListTemplate">
                 <StackPanel Orientation="Horizontal" Padding="12">
                     <ProgressRing IsActive="True" Margin="0,0,12,0" Foreground="Green" />
@@ -69,7 +71,7 @@
         </StackPanel>
         <controls:Loading
             x:Name="LoadingControl"
-           
+            IsLoading="{Binding Path=waitProgressHelper.IsBusy}"
             HorizontalContentAlignment="Center" 
                           VerticalContentAlignment="Center"
                           Background="Black" Opacity="0.7">

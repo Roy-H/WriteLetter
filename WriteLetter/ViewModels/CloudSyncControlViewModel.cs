@@ -2,6 +2,7 @@
 using AppCore.Helper;
 using AppCore.SDK.Controls;
 using AppCore.SDK.Helper;
+using AppCore.SDK.OneDrive;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -42,7 +43,9 @@ namespace WriteLetter.ViewModels
                 {
                     CanExecuteCallback = delegate
                     {
-                        return true;
+                        if (OneDriveHelper.Instance.OneDriveClient == null)
+                            OneDriveHelper.Instance.InitializeClient(OneDriveHelper.ClientType.ConsumerUwp);
+                        return OneDriveHelper.Instance.OneDriveClient!=null;
                     },
                     ExecuteCallback = delegate
                     {
@@ -60,12 +63,14 @@ namespace WriteLetter.ViewModels
                 {
                     CanExecuteCallback = delegate
                     {
-                        return true;
+                        return OneDriveHelper.Instance.OneDriveClient != null;
                     },
-                    ExecuteCallback = delegate
+                    ExecuteCallback =async delegate
                     {
                         //DialogManager.Instance.ShowInfoDialog()
-
+                        WaitProgressHelper.Instance.SetToBusy();
+                        await DataManager.Instance.UploadDataToOneDrive();
+                        WaitProgressHelper.Instance.UnSetToBusy();
                     }
                 };
             }
@@ -79,11 +84,14 @@ namespace WriteLetter.ViewModels
                 {
                     CanExecuteCallback = delegate
                     {
-                        return true;
+                        return OneDriveHelper.Instance.OneDriveClient != null;
                     },
-                    ExecuteCallback = delegate
+                    ExecuteCallback =async delegate
                     {
-                        var a = Strings.IDS_APP_NAME;
+                        WaitProgressHelper.Instance.SetToBusy();
+                        var data= await DataManager.Instance.GetDataFromOneDrive();
+                        DataManager.Instance.Data = data;
+                        WaitProgressHelper.Instance.UnSetToBusy();
                     }
                 };
             }

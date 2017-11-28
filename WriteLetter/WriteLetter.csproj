@@ -163,9 +163,11 @@
     <Compile Include="SDK\Helper\FolderHelper.cs" />
     <Compile Include="SDK\Helper\ImageCache.cs" />
     <Compile Include="SDK\Helper\StringLoader.cs" />
+    <Compile Include="SDK\Helper\WaitProgressHelper.cs" />
     <Compile Include="SDK\Models\CacheBase.cs" />
     <Compile Include="SDK\Models\InMemoryStorageItem.cs" />
     <Compile Include="SDK\Models\InMenoryStorage.cs" />
+    <Compile Include="SDK\MVVM\DependencyPropertyWatcher.cs" />
     <Compile Include="SDK\OneDrive\OneDriveHelper.cs" />
     <Compile Include="SDK\Views\ControlTest.xaml.cs">
       <DependentUpon>ControlTest.xaml</DependentUpon>

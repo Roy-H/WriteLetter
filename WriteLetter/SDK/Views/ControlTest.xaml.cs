@@ -27,15 +27,18 @@ namespace AppCore.SDK.Views
         public ControlTest()
         {
             this.InitializeComponent();
+            this.DataContext = this;
         }
+
+        public static WaitProgressHelper waitProgressHelper { get { return WaitProgressHelper.Instance; } }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             //Element.Visibility = Element.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
             //StringLoader.Instance.AsyncStrings();
-            LoadingControl.IsLoading = true;
+            waitProgressHelper.IsBusy = true;
             await Task.Delay(5000);
-            LoadingControl.IsLoading = false;
+            waitProgressHelper.IsBusy = false;
         }
     }
 }

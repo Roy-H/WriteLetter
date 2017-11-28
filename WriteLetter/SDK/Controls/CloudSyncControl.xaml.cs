@@ -60,7 +60,8 @@ namespace AppCore.SDK.Controls
         private StackPanel SubItems => subItems;
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            await OneDriveHelper.Instance.InitializeClient(OneDriveHelper.ClientType.ConsumerUwp);
+            
+            OneDriveHelper.Instance.InitializeClient(OneDriveHelper.ClientType.ConsumerUwp);
             SubItems.Visibility = SubItems.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
         }
     }
