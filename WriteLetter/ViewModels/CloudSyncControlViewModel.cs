@@ -90,7 +90,11 @@ namespace WriteLetter.ViewModels
                     {
                         WaitProgressHelper.Instance.SetToBusy();
                         var data= await DataManager.Instance.GetDataFromOneDrive();
-                        DataManager.Instance.Data = data;
+
+                        if (DataManager.Instance.Data != null)
+                        {
+                            DataManager.Instance.Data.YearViewModels = data.YearViewModels;
+                        }
                         WaitProgressHelper.Instance.UnSetToBusy();
                     }
                 };

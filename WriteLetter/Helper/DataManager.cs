@@ -63,7 +63,8 @@ namespace AppCore.Helper
             if (data!=null&&((DataViewModel)data) != null)
             {
                 Data = data as DataViewModel;
-            }
+                Data.Update();
+            }           
             return data;
         }
 

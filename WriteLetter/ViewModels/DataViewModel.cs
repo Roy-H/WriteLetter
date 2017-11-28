@@ -40,7 +40,11 @@ namespace WriteLetter.ViewModels
             get
             {
                 return yearViewModels;
-            }            
+            }
+            set
+            {
+                yearViewModels = value;
+            }
         }
         
         public void AddYear(YearViewModel year)
@@ -63,6 +67,11 @@ namespace WriteLetter.ViewModels
                 }
                 return count;
             }
+        }
+
+        public void Update()
+        {
+            OnPropertyChanged(nameof(YearViewModels));
         }
     }
 }

@@ -58,7 +58,14 @@ namespace WriteLetter.ViewModels
         private ObservableCollection<LetterViewModel> letters = new ObservableCollection<LetterViewModel>();
         
         public ObservableCollection<LetterViewModel> Letters
-        { get { return letters; } }
+        {
+            get
+            { return letters; }
+            set
+            {
+                letters = value;
+            }
+        }
 
         
         public ICommand EnterMonthCommand

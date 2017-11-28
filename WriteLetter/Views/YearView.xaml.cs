@@ -32,11 +32,7 @@ namespace WriteLetter.Views
             get
             {
                 return DataManager.Instance.Data;
-            }
-            set
-            {
-                DataManager.Instance.Data = value;
-            }
+            }           
         }        
 
         public YearView()
@@ -44,10 +40,11 @@ namespace WriteLetter.Views
             this.Loaded += YearView_Loaded;
             this.Unloaded += YearView_Unloaded;
             this.InitializeComponent();
-            Initialize();
-            
+            if(DataManager.Instance.Data==null)
+                Initialize();
+            this.DataContext = Data;
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
-            NavigationCacheMode = NavigationCacheMode.Enabled;
+            //NavigationCacheMode = NavigationCacheMode.Enabled;
         }
 
         private void YearView_Unloaded(object sender, RoutedEventArgs e)
@@ -70,20 +67,21 @@ namespace WriteLetter.Views
         {
             try
             {
-                var data = await DataManager.Instance.LoadData();
-                if (data is DataViewModel)
-                {
-                    Data = data as DataViewModel;
-                }
-                if (Data == null)
-                    Data = new DataViewModel();
+                await DataManager.Instance.LoadData();
+                //if (data is DataViewModel)
+                //{
+                //    Data = data as DataViewModel;
+                //}
+                //if (Data == null)
+                //    Data = new DataViewModel();
             }
             catch (Exception)
             {
                 var msgDialog = new Windows.UI.Popups.MessageDialog("之前的数据将会丢失") { Title = "载入数据失败" };
                 msgDialog.Commands.Add(new Windows.UI.Popups.UICommand("确定", uiCommand => {}));
                 await msgDialog.ShowAsync();
-                Data = new DataViewModel();
+                DataManager.Instance.Data = new DataViewModel();
+                //Data = new DataViewModel();
             }
             if (Data.YearViewModels.Count == 0)
                 Data.AddYear(new YearViewModel(DateTime.Now));

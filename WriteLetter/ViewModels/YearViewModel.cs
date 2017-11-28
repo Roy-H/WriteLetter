@@ -49,6 +49,10 @@ namespace WriteLetter.ViewModels
             {
                 return monthViewModels;
             }
+            set
+            {
+                monthViewModels = value;
+            }
         }
 
         public void AddMonth(MonthViewModel month)
