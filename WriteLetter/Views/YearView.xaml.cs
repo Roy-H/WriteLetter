@@ -40,9 +40,8 @@ namespace WriteLetter.Views
             this.Loaded += YearView_Loaded;
             this.Unloaded += YearView_Unloaded;
             this.InitializeComponent();
-            if(DataManager.Instance.Data==null)
-                Initialize();
-            this.DataContext = Data;
+            
+            //this.DataContext = DataManager.Instance.Data;
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
             //NavigationCacheMode = NavigationCacheMode.Enabled;
         }
@@ -91,6 +90,7 @@ namespace WriteLetter.Views
 
         private void YearView_Loaded(object sender, RoutedEventArgs e)
         {
+            this.DataContext = DataManager.Instance.Data;
             AddCloudSyncControl();
         }
 

@@ -22,6 +22,7 @@ using System.Threading.Tasks;
 using Windows.UI.Notifications;
 using AppCore.SDK.Views;
 using AppCore;
+using AppCore.Helper;
 
 namespace WriteLetter
 {
@@ -40,7 +41,8 @@ namespace WriteLetter
         {
 
             Frame rootFrame = Window.Current.Content as Frame;
-
+            //load file from file
+            DataManager.Instance.LoadData();
             if (rootFrame == null)
             {                
                 rootFrame = new Frame();

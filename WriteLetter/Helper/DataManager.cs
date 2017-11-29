@@ -51,7 +51,7 @@ namespace AppCore.Helper
             
         }
 
-        public async Task<object> LoadData()
+        public async void LoadData()
         {
             object data = null;
             var fileExist = await ApplicationData.Current.LocalFolder.TryGetItemAsync(fileName) as StorageFile;
@@ -64,8 +64,7 @@ namespace AppCore.Helper
             {
                 Data = data as DataViewModel;
                 Data.Update();
-            }           
-            return data;
+            }
         }
 
         public async Task<DataViewModel> GetDataFromOneDrive()
