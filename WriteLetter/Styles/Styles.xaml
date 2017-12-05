@@ -232,7 +232,7 @@
 
     <!--page styles -->
     <Style x:Key="PageNormalStyle" TargetType="Page">
-        <Setter Property="FontFamily" Value="ms-appx:///Assets/fonts/FZLongZhaoJW.ttf#方正龙爪简体"></Setter>
+        <Setter Property="FontFamily" Value="ms-appx:///Assets/fonts/FZLongZhaoJW.ttf#FZLongZhaoS-R-GB"></Setter>
         <Setter Property="FontSize" Value="36"></Setter>
         <Setter Property="Background" Value="#A7C6C1"></Setter>
     </Style>
@@ -240,35 +240,35 @@
     <!-- colors defined across high contrast, light and dark theme-->
     <Style x:Key="TextStyle" 
            TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="ms-appx:///Assets/fonts/FZLongZhaoJW.ttf#方正龙爪简体">
+        <Setter Property="FontFamily" Value="ms-appx:///Assets/fonts/FZLongZhaoJW.ttf#FZLongZhaoS-R-GB">
         </Setter>
         <Setter Property="FontSize" Value="36"></Setter>
     </Style>
 
     <Style x:Key="TextMinStyle" 
            TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="ms-appx:///Assets/fonts/FZLongZhaoJW.ttf#方正龙爪简体">
+        <Setter Property="FontFamily" Value="ms-appx:///Assets/fonts/FZLongZhaoJW.ttf#FZLongZhaoS-R-GB">
         </Setter>
         <Setter Property="FontSize" Value="24"></Setter>
     </Style>
 
     <Style x:Key="TextTinyStyle" 
            TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="ms-appx:///Assets/fonts/FZLongZhaoJW.ttf#方正龙爪简体">
+        <Setter Property="FontFamily" Value="ms-appx:///Assets/fonts/FZLongZhaoJW.ttf#FZLongZhaoS-R-GB">
         </Setter>
         <Setter Property="FontSize" Value="16"></Setter>
     </Style>
 
     <Style x:Key="PageVerticalTextMidStyle" 
            TargetType="Page">
-        <Setter Property="FontFamily" Value="ms-appx:///Assets/fonts/FZLongZhaoJW.ttf#方正龙爪简体">
+        <Setter Property="FontFamily" Value="ms-appx:///Assets/fonts/FZLongZhaoJW.ttf#FZLongZhaoS-R-GB">
         </Setter>
         <Setter Property="FontSize" Value="36"></Setter>
     </Style>
     
     <Style x:Key="PageVerticalTextMinStyle" 
            TargetType="Page">
-        <Setter Property="FontFamily" Value="ms-appx:///Assets/fonts/FZLongZhaoJW.ttf#方正龙爪简体">
+        <Setter Property="FontFamily" Value="ms-appx:///Assets/fonts/FZLongZhaoJW.ttf#FZLongZhaoS-R-GB">
         </Setter>
         <Setter Property="FontSize" Value="24"></Setter>
     </Style>
