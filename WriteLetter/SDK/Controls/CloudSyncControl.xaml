@@ -9,7 +9,9 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
-
+    <UserControl.Resources>
+        
+    </UserControl.Resources>
     <Grid MaxWidth="60" MaxHeight="200" Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -84,7 +86,7 @@
                                     Margin="10">
                             <Ellipse Width="49" Height="49" Fill="#C6001F"/>
                         </local:DropShadowPanel>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextStyle}">云</TextBlock>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontFamily="ms-appx:///Assets/fonts/FZLongZhaoJW.ttf#FZLongZhaoS-R-GB">云</TextBlock>
                     </Grid>
                 </ControlTemplate>
             </Button.Template>

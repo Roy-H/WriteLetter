@@ -66,7 +66,7 @@ namespace WriteLetter.Views
         {
             try
             {
-                await DataManager.Instance.LoadData();
+                //await DataManager.Instance.LoadData();
                 //if (data is DataViewModel)
                 //{
                 //    Data = data as DataViewModel;
