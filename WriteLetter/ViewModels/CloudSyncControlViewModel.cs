@@ -43,13 +43,14 @@ namespace WriteLetter.ViewModels
                 {
                     CanExecuteCallback = delegate
                     {
-                        if (OneDriveHelper.Instance.OneDriveClient == null)
-                            OneDriveHelper.Instance.InitializeClient(OneDriveHelper.ClientType.ConsumerUwp);
-                        return OneDriveHelper.Instance.OneDriveClient!=null;
+                        return true;
                     },
-                    ExecuteCallback = delegate
+                    ExecuteCallback =async delegate
                     {
-
+                        WaitProgressHelper.Instance.SetToBusy();
+                        if (OneDriveHelper.Instance.OneDriveClient == null)
+                            await OneDriveHelper.Instance.InitializeClient(OneDriveHelper.ClientType.ConsumerUwp);
+                        WaitProgressHelper.Instance.UnSetToBusy();
                     }
                 };
             }
@@ -63,12 +64,18 @@ namespace WriteLetter.ViewModels
                 {
                     CanExecuteCallback = delegate
                     {
-                        return OneDriveHelper.Instance.OneDriveClient != null;
+                        return true;                       
                     },
                     ExecuteCallback =async delegate
                     {
                         //DialogManager.Instance.ShowInfoDialog()
                         WaitProgressHelper.Instance.SetToBusy();
+                        if (OneDriveHelper.Instance.OneDriveClient == null)
+                        {
+                            await OneDriveHelper.Instance.InitializeClient(OneDriveHelper.ClientType.ConsumerUwp);
+                        }
+                        if (OneDriveHelper.Instance.OneDriveClient == null)
+                            return;
                         await DataManager.Instance.UploadDataToOneDrive();
                         WaitProgressHelper.Instance.UnSetToBusy();
                     }
@@ -84,17 +91,24 @@ namespace WriteLetter.ViewModels
                 {
                     CanExecuteCallback = delegate
                     {
-                        return OneDriveHelper.Instance.OneDriveClient != null;
+                        return true;
                     },
                     ExecuteCallback =async delegate
                     {
                         WaitProgressHelper.Instance.SetToBusy();
-                        var data= await DataManager.Instance.GetDataFromOneDrive();
-
-                        if (DataManager.Instance.Data != null)
+                        if (OneDriveHelper.Instance.OneDriveClient == null)
                         {
-                            DataManager.Instance.Data.YearViewModels = data.YearViewModels;
+                            await OneDriveHelper.Instance.InitializeClient(OneDriveHelper.ClientType.ConsumerUwp);
                         }
+                        if (OneDriveHelper.Instance.OneDriveClient == null)
+                            return;
+                        var data= await DataManager.Instance.GetDataFromOneDrive();
+                        if (data == null)
+                        {
+                            //inform user fail to load data
+                            return;
+                        }
+                        //load data
                         WaitProgressHelper.Instance.UnSetToBusy();
                     }
                 };

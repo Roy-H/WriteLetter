@@ -145,8 +145,14 @@
   <data name="IDS_ADDED" xml:space="preserve">
     <value>添加</value>
   </data>
-  <data name="IDS_TEST_STRING">
+  <data name="IDS_TEST_STRING" xml:space="preserve">
     <value>test string</value>
     <comment>en-US</comment>
+  </data>
+  <data name="IDS_FAIL_TO_LOAD_DATA" xml:space="preserve">
+    <value>载入数据失败。</value>
+  </data>
+  <data name="IDS_THE_FORMER_DATA_LOST" xml:space="preserve">
+    <value>之前的数据将会丢失。</value>
   </data>
 </root>

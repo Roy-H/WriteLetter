@@ -19,6 +19,7 @@ using WriteLetter.ViewModels;
 using Windows.Storage.Pickers;
 using AppCore.SDK.OneDrive;
 using AppCore.SDK.Controls;
+using AppCore;
 
 namespace WriteLetter.Views
 {
@@ -57,10 +58,7 @@ namespace WriteLetter.Views
             //if(e.Parameter != null)
         }
 
-        private void Initialize()
-        {            
-            Load();
-        }
+        
 
         private async void Load()
         {
@@ -76,21 +74,25 @@ namespace WriteLetter.Views
             }
             catch (Exception)
             {
-                var msgDialog = new Windows.UI.Popups.MessageDialog("之前的数据将会丢失") { Title = "载入数据失败" };
-                msgDialog.Commands.Add(new Windows.UI.Popups.UICommand("确定", uiCommand => {}));
+                var msgDialog = new Windows.UI.Popups.MessageDialog(Strings.IDS_THE_FORMER_DATA_LOST) { Title = Strings.IDS_FAIL_TO_LOAD_DATA };
+                msgDialog.Commands.Add(new Windows.UI.Popups.UICommand(Strings.IDS_OK, uiCommand => {}));
                 await msgDialog.ShowAsync();
                 DataManager.Instance.Data = new DataViewModel();
                 //Data = new DataViewModel();
             }
-            if (Data.YearViewModels.Count == 0)
-                Data.AddYear(new YearViewModel(DateTime.Now));
+            
             this.DataContext = Data;
             
         }
 
-        private void YearView_Loaded(object sender, RoutedEventArgs e)
+        private async void YearView_Loaded(object sender, RoutedEventArgs e)
         {
+            if (DataManager.Instance.Data == null)
+            {
+               await DataManager.Instance.LoadData();
+            }
             this.DataContext = DataManager.Instance.Data;
+            //DataManager.Instance.Data.Update();
             AddCloudSyncControl();
         }
 

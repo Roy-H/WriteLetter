@@ -33,16 +33,14 @@ namespace WriteLetter
         public App()
         {
             this.InitializeComponent();
-            this.Suspending += OnSuspending;
+            this.Suspending += OnSuspending;            
         }
 
         
         protected override void OnLaunched(LaunchActivatedEventArgs e)
-        {
-
+        {           
             Frame rootFrame = Window.Current.Content as Frame;
-            //load file from file
-            DataManager.Instance.LoadData();
+            //load file from file           
             if (rootFrame == null)
             {                
                 rootFrame = new Frame();
@@ -93,12 +91,6 @@ namespace WriteLetter
                     statusBar.ProgressIndicator.Text = Strings.IDS_BACK_EXIT_WARNING;
                     statusBar.ProgressIndicator.ShowAsync();
 
-                    //Windows.Data.Xml.Dom.XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText01);
-                    //Windows.Data.Xml.Dom.XmlNodeList elements = toastXml.GetElementsByTagName("text");
-                    //elements[0].AppendChild(toastXml.CreateTextNode("再按一次返回键退出程序。"));
-                    //ToastNotification toast = new ToastNotification(toastXml);                
-                    //ToastNotificationManager.CreateToastNotifier().Show(toast);
-
                     if (isExit)
                     {
                         App.Current.Exit();
@@ -144,14 +136,16 @@ namespace WriteLetter
                     break;
             }
         }
-
+        
         void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
         
-        private void OnSuspending(object sender, SuspendingEventArgs e)
+        private async void OnSuspending(object sender, SuspendingEventArgs e)
         {
+            await DataManager.Instance.SaveData(null);
+            //await Task.Delay(10000);
             var deferral = e.SuspendingOperation.GetDeferral();            
             deferral.Complete();
         }
