@@ -189,7 +189,7 @@ namespace AppCore.SDK.OneDrive
                 stream = await OneDriveClient
                             .Drive
                             .Root
-                            .ItemWithPath(itemPath)
+                            .ItemWithPath(folderPath+itemPath)
                             .Content
                             .Request()
                             .GetAsync();

@@ -82,11 +82,11 @@ namespace WriteLetter.Views
             catch (Exception ex)
             {
                 isOk = false;
-                DialogManager.Instance.ShowConfirmDialog(string.Empty, Strings.IDS_SAVE_ERROR);
+                await DialogManager.Instance.ShowConfirmDialog(string.Empty, Strings.IDS_SAVE_ERROR);
                 Debug.WriteLine(ex.Message);
             }
             if(isOk)
-                DialogManager.Instance.ShowConfirmDialog(string.Empty, Strings.IDS_SAVE_SUCCESSFULLY);
+                await DialogManager.Instance.ShowConfirmDialog(string.Empty, Strings.IDS_SAVE_SUCCESSFULLY);
         }
 
        

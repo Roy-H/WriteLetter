@@ -22,6 +22,8 @@ namespace AppCore.Helper
             }
         }
 
+        public event EventHandler DataChanged;
+
         public DataViewModel Data { get; set; }
 
         const string fileName = "data.json";
@@ -198,6 +200,11 @@ namespace AppCore.Helper
                 await SaveData(Data);
                 return;
             }
+        }
+
+        public void OnDataChanged()
+        {
+            DataChanged?.Invoke(Data,null);
         }
     }
 }

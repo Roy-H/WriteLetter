@@ -66,6 +66,7 @@
         </Grid>
 
         <controls:Loading
+            sdkhelper:RegisterElementHelper.RegisterElementName="waitingDialog"
             Grid.ColumnSpan="2"
             Grid.RowSpan="2"
             x:Name="LoadingControl" 
@@ -74,7 +75,11 @@
                           VerticalContentAlignment="Center"
                           Background="Black" Opacity="0.65">
             <ContentControl x:Name="LoadingContentControl">
-                <ProgressRing/>
+                <ContentControl.ContentTemplate>
+                    <DataTemplate>
+                        <ProgressRing IsActive="True" Foreground="White"/>
+                    </DataTemplate>
+                </ContentControl.ContentTemplate>
             </ContentControl>
         </controls:Loading>
     </Grid>

@@ -49,6 +49,7 @@ namespace WriteLetter.Views
 
         private void YearView_Unloaded(object sender, RoutedEventArgs e)
         {
+            DataManager.Instance.DataChanged -= OnDataChanged;           
             RemoveCloudSyncControl();
         }
 
@@ -92,11 +93,15 @@ namespace WriteLetter.Views
                await DataManager.Instance.LoadData();
             }
             this.DataContext = DataManager.Instance.Data;
-            //DataManager.Instance.Data.Update();
+            DataManager.Instance.DataChanged -= OnDataChanged;
+            DataManager.Instance.DataChanged += OnDataChanged;
             AddCloudSyncControl();
         }
 
-        
+        private void OnDataChanged(object sender, EventArgs e)
+        {
+            DataContext = Data;
+        }
 
         private void OnErrorOccurred(object sender, Microsoft.Advertising.WinRT.UI.AdErrorEventArgs e)
         {

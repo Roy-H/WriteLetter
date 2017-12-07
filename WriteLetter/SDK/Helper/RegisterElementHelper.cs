@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 
-namespace WriteLetter.SDK.Helper
+namespace AppCore.SDK.Helper
 {
     public static class RegisterElementHelper
     {

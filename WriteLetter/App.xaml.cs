@@ -23,6 +23,7 @@ using Windows.UI.Notifications;
 using AppCore.SDK.Views;
 using AppCore;
 using AppCore.Helper;
+using AppCore.SDK.Controls;
 
 namespace WriteLetter
 {
@@ -37,8 +38,15 @@ namespace WriteLetter
         }
 
         
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
-        {           
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
+        {
+            //check version
+            if (!ApiInformationHelper.IsCreatorsUpdateOrAbove)
+            {
+                await DialogManager.Instance.ShowConfirmDialog(Strings.IDS_VERSION_LOW, Strings.IDS_UPDATE_WINDOWS_VERSION);
+                App.Current.Exit();
+                return;
+            }
             Frame rootFrame = Window.Current.Content as Frame;
             //load file from file           
             if (rootFrame == null)

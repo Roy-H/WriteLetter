@@ -14,9 +14,6 @@ namespace WriteLetter.ViewModels
         [DataMember]
         private string dataVersion = "1.0.0";
 
-        //[DataMember]
-        //private DateTime lastestSaveTime = DateTime.Now;
-
         public string Version
         {
             get
@@ -71,7 +68,7 @@ namespace WriteLetter.ViewModels
 
         public void Update()
         {
-            OnPropertyChanged(nameof(YearViewModels));
+            OnPropertyChanged(nameof(DataViewModel));
         }
     }
 }

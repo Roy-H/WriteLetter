@@ -86,7 +86,7 @@
                                     Margin="10">
                             <Ellipse Width="49" Height="49" Fill="#C6001F"/>
                         </local:DropShadowPanel>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontFamily="ms-appx:///Assets/fonts/FZLongZhaoJW.ttf#FZLongZhaoS-R-GB">云</TextBlock>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextStyle}">云</TextBlock>
                     </Grid>
                 </ControlTemplate>
             </Button.Template>

@@ -47,10 +47,12 @@ namespace WriteLetter.ViewModels
                     },
                     ExecuteCallback =async delegate
                     {
-                        WaitProgressHelper.Instance.SetToBusy();
                         if (OneDriveHelper.Instance.OneDriveClient == null)
+                        {
+                            WaitProgressHelper.Instance.SetToBusy();
                             await OneDriveHelper.Instance.InitializeClient(OneDriveHelper.ClientType.ConsumerUwp);
-                        WaitProgressHelper.Instance.UnSetToBusy();
+                            WaitProgressHelper.Instance.UnSetToBusy();
+                        }                           
                     }
                 };
             }
@@ -75,8 +77,13 @@ namespace WriteLetter.ViewModels
                             await OneDriveHelper.Instance.InitializeClient(OneDriveHelper.ClientType.ConsumerUwp);
                         }
                         if (OneDriveHelper.Instance.OneDriveClient == null)
+                        {
+                            WaitProgressHelper.Instance.UnSetToBusy();
                             return;
+                        }
+                            
                         await DataManager.Instance.UploadDataToOneDrive();
+                        await DialogManager.Instance.ShowConfirmDialog(Strings.IDS_INFO, Strings.IDS_UPLOAD_CLOUD_DATA_OK);
                         WaitProgressHelper.Instance.UnSetToBusy();
                     }
                 };
@@ -101,14 +108,23 @@ namespace WriteLetter.ViewModels
                             await OneDriveHelper.Instance.InitializeClient(OneDriveHelper.ClientType.ConsumerUwp);
                         }
                         if (OneDriveHelper.Instance.OneDriveClient == null)
+                        {
+                            WaitProgressHelper.Instance.UnSetToBusy();
                             return;
+                        }
+                            
                         var data= await DataManager.Instance.GetDataFromOneDrive();
                         if (data == null)
                         {
                             //inform user fail to load data
+                            await DialogManager.Instance.ShowConfirmDialog(Strings.IDS_WARNING,Strings.IDS_LOAD_CLOUD_DATA_FAIL);
+                            WaitProgressHelper.Instance.UnSetToBusy();
                             return;
                         }
                         //load data
+                        DataManager.Instance.Data = data;
+                        DataManager.Instance.OnDataChanged();
+                        await DialogManager.Instance.ShowConfirmDialog(Strings.IDS_INFO, Strings.IDS_LOAD_CLOUD_DATA_OK);
                         WaitProgressHelper.Instance.UnSetToBusy();
                     }
                 };

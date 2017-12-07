@@ -1,4 +1,5 @@
-﻿using AppCore.SDK.MVVM;
+﻿using AppCore.SDK.Controls;
+using AppCore.SDK.MVVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,11 +35,21 @@ namespace AppCore.SDK.Helper
         public void SetToBusy()
         {
             IsBusy = true;
+            var dialog = RegisterElementHelper.FindElement("waitingDialog");
+            if (dialog != null && dialog is Loading)
+            {
+                (dialog as Loading).IsLoading = true;
+            }
         }
 
         public void UnSetToBusy()
         {
             IsBusy = false;
+            var dialog = RegisterElementHelper.FindElement("waitingDialog");
+            if (dialog != null && dialog is Loading)
+            {
+                (dialog as Loading).IsLoading = false;
+            }
         }
 
         public WaitProgressHelper()
