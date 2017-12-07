@@ -1,7 +1,7 @@
 ﻿
 using Windows.Foundation.Metadata;
 
-namespace AppCore.SDK.Controls.Animations
+namespace AppCore.SDK.Controls
 {
     internal class ApiInformationHelper
     {

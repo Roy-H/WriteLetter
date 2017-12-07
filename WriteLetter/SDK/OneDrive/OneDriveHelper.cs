@@ -74,7 +74,7 @@ namespace AppCore.SDK.OneDrive
             Consumer,
             ConsumerUwp
         }
-        public async void InitializeClient(ClientType clientType)
+        public async Task InitializeClient(ClientType clientType)
         {
             //var app = (App)Application.Current;
             if (OneDriveClient == null)
@@ -118,6 +118,8 @@ namespace AppCore.SDK.OneDrive
                 }
                 catch (ServiceException exception)
                 {
+                    OneDriveClient = null;
+                    AuthProvider = null;
                     // Swallow the auth exception but write message for debugging.
                     Debug.WriteLine(exception.Error.Message);
                 }
@@ -187,7 +189,7 @@ namespace AppCore.SDK.OneDrive
                 stream = await OneDriveClient
                             .Drive
                             .Root
-                            .ItemWithPath(itemPath)
+                            .ItemWithPath(folderPath+itemPath)
                             .Content
                             .Request()
                             .GetAsync();
@@ -244,13 +246,15 @@ namespace AppCore.SDK.OneDrive
             }            
             return true;
         }
+
+        private string folderPath = "/jianziruwu/";
         public async Task<bool> UpLoadFile(StorageFile file)
         {
             try
             {
                 using (var stream = await file.OpenStreamForReadAsync())
                 {
-                    await UploadItem(stream, file.Name);                  
+                    await UploadItem(stream, folderPath+ file.Name);                  
                 }
                 
             }

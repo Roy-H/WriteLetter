@@ -38,7 +38,14 @@ namespace AppCore.Helper
             msgDialog.Commands.Add(commandCancel);
             await msgDialog.ShowAsync();
         }
-        public async void ShowConfirmDialog(string title, string content)
+        public async Task ShowConfirmDialog(string title, string content)
+        {
+            var msgDialog = new Windows.UI.Popups.MessageDialog(content) { Title = title };
+            msgDialog.Commands.Add(new UICommand(Strings.IDS_OK));
+            //msgDialog.Commands.Add(commandCancel);
+            await msgDialog.ShowAsync();
+        }
+        public async void ShowConfirmDialogAsync(string title, string content)
         {
             var msgDialog = new Windows.UI.Popups.MessageDialog(content) { Title = title };
             msgDialog.Commands.Add(new UICommand(Strings.IDS_OK));

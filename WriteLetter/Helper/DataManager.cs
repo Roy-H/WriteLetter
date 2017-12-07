@@ -22,6 +22,8 @@ namespace AppCore.Helper
             }
         }
 
+        public event EventHandler DataChanged;
+
         public DataViewModel Data { get; set; }
 
         const string fileName = "data.json";
@@ -51,20 +53,33 @@ namespace AppCore.Helper
             
         }
 
-        public async void LoadData()
+        public async Task LoadData()
         {
             object data = null;
-            var fileExist = await ApplicationData.Current.LocalFolder.TryGetItemAsync(fileName) as StorageFile;
-            if (fileExist != null)
+            try
             {
-                data = await DataHelper.Load(typeof(DataViewModel), fileName);
+                var fileExist = await ApplicationData.Current.LocalFolder.TryGetItemAsync(fileName) as StorageFile;
+                if (fileExist != null)
+                {
+                    data = await DataHelper.Load(typeof(DataViewModel), fileName);
+                }
+
+                if (data != null && ((DataViewModel)data) != null)
+                {
+                    Data = data as DataViewModel;
+                    Data.Update();
+                }
+            }
+            catch (Exception)
+            {
+                var msgDialog = new Windows.UI.Popups.MessageDialog(Strings.IDS_THE_FORMER_DATA_LOST) { Title = Strings.IDS_FAIL_TO_LOAD_DATA };
+                msgDialog.Commands.Add(new Windows.UI.Popups.UICommand(Strings.IDS_OK, uiCommand => { }));
+                await msgDialog.ShowAsync();
+                Data = new DataViewModel();
+                if (Data.YearViewModels.Count == 0)
+                    Data.AddYear(new YearViewModel(DateTime.Now));
             }
             
-            if (data!=null&&((DataViewModel)data) != null)
-            {
-                Data = data as DataViewModel;
-                Data.Update();
-            }
         }
 
         public async Task<DataViewModel> GetDataFromOneDrive()
@@ -185,6 +200,11 @@ namespace AppCore.Helper
                 await SaveData(Data);
                 return;
             }
+        }
+
+        public void OnDataChanged()
+        {
+            DataChanged?.Invoke(Data,null);
         }
     }
 }

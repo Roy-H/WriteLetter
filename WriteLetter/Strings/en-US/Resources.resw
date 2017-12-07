@@ -136,6 +136,18 @@
   <data name="IDS_DELETE_WARNING" xml:space="preserve">
     <value>Make sure you want to delete this item?</value>
   </data>
+  <data name="IDS_FAIL_TO_LOAD_DATA" xml:space="preserve">
+    <value>fail to load data.</value>
+  </data>
+  <data name="IDS_INFO" xml:space="preserve">
+    <value>information</value>
+  </data>
+  <data name="IDS_LOAD_CLOUD_DATA_FAIL" xml:space="preserve">
+    <value>fail to load data from OneDriver, maybe you need to upload data first.</value>
+  </data>
+  <data name="IDS_LOAD_CLOUD_DATA_OK" xml:space="preserve">
+    <value>load data successfully!</value>
+  </data>
   <data name="IDS_OK" xml:space="preserve">
     <value>OK</value>
   </data>
@@ -147,5 +159,20 @@
   </data>
   <data name="IDS_TEST_STRING" xml:space="preserve">
     <value>test string</value>
+  </data>
+  <data name="IDS_THE_FORMER_DATA_LOST" xml:space="preserve">
+    <value>Unfortunately! the data has been lost.</value>
+  </data>
+  <data name="IDS_UPDATE_WINDOWS_VERSION" xml:space="preserve">
+    <value>Your current system version is too low,please update your system.</value>
+  </data>
+  <data name="IDS_UPLOAD_CLOUD_DATA_OK" xml:space="preserve">
+    <value>upload data successfully!</value>
+  </data>
+  <data name="IDS_VERSION_LOW" xml:space="preserve">
+    <value>update your OS.</value>
+  </data>
+  <data name="IDS_WARNING" xml:space="preserve">
+    <value>warning</value>
   </data>
 </root>

@@ -97,7 +97,6 @@
     <Content Include="Assets\fonts\FZLongZhaoJW.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SDK\Icons\ic_backup_black_24dp.png" />
     <Content Include="Strings\StringProvider.Helper.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>StringProvider.Helper.cs</LastGenOutput>
@@ -162,6 +161,7 @@
     <Compile Include="SDK\Helper\DesignTimeHelpers.cs" />
     <Compile Include="SDK\Helper\FolderHelper.cs" />
     <Compile Include="SDK\Helper\ImageCache.cs" />
+    <Compile Include="SDK\Helper\RegisterElementHelper.cs" />
     <Compile Include="SDK\Helper\StringLoader.cs" />
     <Compile Include="SDK\Helper\WaitProgressHelper.cs" />
     <Compile Include="SDK\Models\CacheBase.cs" />
@@ -304,6 +304,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="SDK\Icons\" />
     <Folder Include="Views\Dialog\" />
   </ItemGroup>
   <ItemGroup>
