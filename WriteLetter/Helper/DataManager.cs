@@ -56,9 +56,11 @@ namespace AppCore.Helper
         public async Task LoadData()
         {
             object data = null;
+            bool hasError = false;
+            StorageFile fileExist = null;
             try
             {
-                var fileExist = await ApplicationData.Current.LocalFolder.TryGetItemAsync(fileName) as StorageFile;
+                fileExist = await ApplicationData.Current.LocalFolder.TryGetItemAsync(fileName) as StorageFile;
                 if (fileExist != null)
                 {
                     data = await DataHelper.Load(typeof(DataViewModel), fileName);
@@ -72,14 +74,21 @@ namespace AppCore.Helper
             }
             catch (Exception)
             {
+                hasError = true;
+            }
+            if (fileExist != null && (data == null || hasError))
+            {
                 var msgDialog = new Windows.UI.Popups.MessageDialog(Strings.IDS_THE_FORMER_DATA_LOST) { Title = Strings.IDS_FAIL_TO_LOAD_DATA };
                 msgDialog.Commands.Add(new Windows.UI.Popups.UICommand(Strings.IDS_OK, uiCommand => { }));
                 await msgDialog.ShowAsync();
+                
+            }
+            if (data == null|| hasError)
+            {
                 Data = new DataViewModel();
                 if (Data.YearViewModels.Count == 0)
                     Data.AddYear(new YearViewModel(DateTime.Now));
-            }
-            
+            }           
         }
 
         public async Task<DataViewModel> GetDataFromOneDrive()

@@ -41,8 +41,7 @@ namespace WriteLetter.Views
             this.Loaded += YearView_Loaded;
             this.Unloaded += YearView_Unloaded;
             this.InitializeComponent();
-            
-            //this.DataContext = DataManager.Instance.Data;
+
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
             //NavigationCacheMode = NavigationCacheMode.Enabled;
         }
@@ -55,35 +54,7 @@ namespace WriteLetter.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            base.OnNavigatedTo(e);
-            //if(e.Parameter != null)
-        }
-
-        
-
-        private async void Load()
-        {
-            try
-            {
-                //await DataManager.Instance.LoadData();
-                //if (data is DataViewModel)
-                //{
-                //    Data = data as DataViewModel;
-                //}
-                //if (Data == null)
-                //    Data = new DataViewModel();
-            }
-            catch (Exception)
-            {
-                var msgDialog = new Windows.UI.Popups.MessageDialog(Strings.IDS_THE_FORMER_DATA_LOST) { Title = Strings.IDS_FAIL_TO_LOAD_DATA };
-                msgDialog.Commands.Add(new Windows.UI.Popups.UICommand(Strings.IDS_OK, uiCommand => {}));
-                await msgDialog.ShowAsync();
-                DataManager.Instance.Data = new DataViewModel();
-                //Data = new DataViewModel();
-            }
-            
-            this.DataContext = Data;
-            
+            base.OnNavigatedTo(e);           
         }
 
         private async void YearView_Loaded(object sender, RoutedEventArgs e)

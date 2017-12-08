@@ -150,9 +150,9 @@ namespace WriteLetter
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
         
-        private async void OnSuspending(object sender, SuspendingEventArgs e)
+        private void OnSuspending(object sender, SuspendingEventArgs e)
         {
-            await DataManager.Instance.SaveData(null);
+            //await DataManager.Instance.SaveData(null);
             //await Task.Delay(10000);
             var deferral = e.SuspendingOperation.GetDeferral();            
             deferral.Complete();
